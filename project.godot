@@ -11,13 +11,10 @@ config_version=5
 [application]
 
 config/name="ABERTRON"
+run/main_scene="res://Scenes/tinkering.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
-
-[physics]
-
-3d/physics_engine="JoltPhysics3D"
