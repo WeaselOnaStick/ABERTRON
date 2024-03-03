@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://2cfugne7ngwi"]
+
+[ext_resource type="PackedScene" uid="uid://do1mq34dysh3o" path="res://Scenes/speech_bubble_right.tscn" id="1_11cp6"]
+[ext_resource type="Script" path="res://Scripts/DialogueRenderer.gd" id="1_j8w1h"]
+[ext_resource type="JSON" path="res://Assets/Dialogue/test.json" id="2_5rn4e"]
+[ext_resource type="PackedScene" uid="uid://dpk0lnbmv6622" path="res://Scenes/speech_bubble_left.tscn" id="2_a0a2x"]
+
+[node name="DialogueRenderer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 77.0
+offset_top = 58.0
+offset_right = 1085.0
+offset_bottom = 1010.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.495459, 0.495459)
+script = ExtResource("1_j8w1h")
+dialogue_data = ExtResource("2_5rn4e")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298611
+anchor_top = -0.0385802
+anchor_right = 0.609375
+anchor_bottom = 0.96142
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="SpeechBubbleRight" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
+layout_mode = 2
+
+[node name="SpeechBubbleLeft" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
+layout_mode = 2

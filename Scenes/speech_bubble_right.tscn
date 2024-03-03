@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://do1mq34dysh3o"]
+
+[ext_resource type="Texture2D" uid="uid://ctdpc72m31qn1" path="res://Assets/Sprites/texting_bubble.png" id="1_eixek"]
+[ext_resource type="Theme" uid="uid://bedb8xgky3ho8" path="res://Scenes/DialogueRenderer_RTL_theme.tres" id="2_8ulwv"]
+
+[node name="SpeechBubbleRight" type="NinePatchRect"]
+custom_minimum_size = Vector2(0, 128)
+size_flags_vertical = 4
+texture = ExtResource("1_eixek")
+region_rect = Rect2(10, 9, 236, 232)
+patch_margin_left = 18
+patch_margin_top = 38
+patch_margin_right = 34
+patch_margin_bottom = 43
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1.805, 2.635)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 103.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
+
+[node name="TextField" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_8ulwv")
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+scroll_active = false
