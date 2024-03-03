@@ -1,24 +1,33 @@
 {
+	"init_mode" : "manual", 
 	"lines": [
 		{
 			"side" : "left",
-			"text" : "Hello? Anyone Home?"
+			"text" : "Hello? \nAnyone Home?",
+			"step_trigger" : "delay",
+			"delay_after" : 4,
 		},
 		{
 			"side" : "right",
 			"text" : "WELCOME UNIT 009F",
 			"step_trigger" : "delay",
-			"delay_after" : 0.2,
+			"delay_after" : 2,
 		},
 		{
 			"side" : "right",
-			"text" : "YOU ARE TO INSPECT PRODUCTS. IS THAT CLEAR?",
-			"step_trigger" : "signal",
+			"text" : "YOU ARE ABERTRON UNIT #009F.\nYOU ARE TO INSPECT PRODUCTS.\nIS THAT CLEAR?",
+			"step_trigger" : "manual",
 		},
 		{
 			"side" : "left",
-			"text" : "No, not really?",
-			"delay_after" : 2.0,
+			"text" : "No..?",
+			"step_trigger" : "manual",
+		},
+		{
+			"side" : "left",
+			"text" : "Not really?",
+			"step_trigger" : "delay",
+			"delay_after" : 4,
 		},
 		{
 			"side" : "right",

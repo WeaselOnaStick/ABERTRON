@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d11bc2bayl27w"]
+[gd_scene load_steps=3 format=3 uid="uid://d11bc2bayl27w"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_v1nms"]
-[ext_resource type="Script" path="res://Scripts/FPS_Camera.gd" id="2_exnsu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wp51u"]
 radius = 0.38
@@ -16,4 +15,3 @@ shape = SubResource("CapsuleShape3D_wp51u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748011, 0)
-script = ExtResource("2_exnsu")

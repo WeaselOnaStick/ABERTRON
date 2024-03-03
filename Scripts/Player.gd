@@ -9,8 +9,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
-
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -30,6 +28,13 @@ func _physics_process(delta):
 
 
 func _input(event):
+	if event.is_action_pressed("mouse_toggle"):
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			
+		
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		event = event as InputEventMouseMotion
 		

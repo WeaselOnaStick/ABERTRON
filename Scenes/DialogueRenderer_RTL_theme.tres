@@ -20,5 +20,5 @@ RichTextLabel/font_sizes/bold_font_size = 16
 RichTextLabel/font_sizes/bold_italics_font_size = 16
 RichTextLabel/font_sizes/italics_font_size = 16
 RichTextLabel/font_sizes/mono_font_size = 16
-RichTextLabel/font_sizes/normal_font_size = 23
+RichTextLabel/font_sizes/normal_font_size = 48
 RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
