@@ -4,6 +4,8 @@ extends Control
 var dialogue_data
 const SPEECH_BUBBLE_LEFT = preload("res://Scenes/speech_bubble_left.tscn")
 const SPEECH_BUBBLE_RIGHT = preload("res://Scenes/speech_bubble_right.tscn")
+const TYPING_INDICATOR = preload("res://Scenes/typing_indicator.tscn")
+var typing_bubble : Panel
 
 @onready var bubble_container = $Panel/MarginContainer/VBoxContainer
 
@@ -29,6 +31,7 @@ func _ready():
 	print(dialogue_data)
 
 func dialog_step():
+	hide_typing_indicator()
 	cur_line_idx += 1
 	if cur_line_idx >= len(dialogue_data["lines"]):
 		return
@@ -39,8 +42,21 @@ func dialog_step():
 		
 	if cur_line.get("step_trigger") == "delay":
 		dialog_busy = true
+		add_typing_indicator()
 		await get_tree().create_timer(cur_line["delay_after"]).timeout
 		dialog_step()
+
+func add_typing_indicator():
+	if typing_bubble != null:
+		typing_bubble.queue_free() 
+	typing_bubble = TYPING_INDICATOR.instantiate()
+	bubble_container.add_child(typing_bubble)
+	var tw := create_tween()
+	tw.tween_property(typing_bubble,"modulate",Color("ffffff"), 0.15).from(Color("ffffff00"))
+	
+func hide_typing_indicator():
+	if typing_bubble != null:
+		typing_bubble.free()
 
 func add_bubble(side := "left", text := "ERROR"):
 	var new_bubble : SpeechBubble
@@ -53,6 +69,7 @@ func add_bubble(side := "left", text := "ERROR"):
 	bubble_container.add_child(new_bubble)
 	rtl.text = text
 	
+	new_bubble.visible = false
 	#this is so fucking stupid 
 	#god bless issue tracking https://github.com/godotengine/godot/issues/36381
 	get_tree().process_frame.connect(new_bubble.fix_h,CONNECT_ONE_SHOT)

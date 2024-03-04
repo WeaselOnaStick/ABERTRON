@@ -1,0 +1,173 @@
+[gd_scene load_steps=8 format=3 uid="uid://cmyiskwmoi44h"]
+
+[ext_resource type="Texture2D" uid="uid://dlcsl1pypya3d" path="res://Assets/Sprites/circle.png" id="1_kjr6t"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l8pu7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7br7"]
+skew = Vector2(-0.21, 0)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+corner_detail = 16
+shadow_color = Color(0.133333, 0.133333, 0.133333, 0.6)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Theme" id="Theme_fysr4"]
+Panel/styles/panel = SubResource("StyleBoxFlat_g7br7")
+
+[sub_resource type="Animation" id="Animation_gsilp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/circle3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-42, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/circle1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-95, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/circle2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-69, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_t1j1w"]
+resource_name = "typing indicator loop"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/circle3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1, 2),
+"transitions": PackedFloat32Array(1, 2, -2, 0.5, 1),
+"update": 0,
+"values": [Vector2(-42, 0), Vector2(-42, 0), Vector2(-42, -10), Vector2(-42, 0), Vector2(-42, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/circle1:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 2),
+"transitions": PackedFloat32Array(2, -2, 0.5, 1),
+"update": 0,
+"values": [Vector2(-95, 0), Vector2(-95, -10), Vector2(-95, 0), Vector2(-95, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/circle2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.7, 2),
+"transitions": PackedFloat32Array(1, 2, -2, 0.5, 1),
+"update": 0,
+"values": [Vector2(-69, 0), Vector2(-69, 0), Vector2(-69, -10), Vector2(-69, 0), Vector2(-69, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gcx1p"]
+_data = {
+"RESET": SubResource("Animation_gsilp"),
+"typing indicator loop": SubResource("Animation_t1j1w")
+}
+
+[node name="TypingIndicator" type="Panel"]
+material = SubResource("CanvasItemMaterial_l8pu7")
+custom_minimum_size = Vector2(128, 50)
+size_flags_horizontal = 8
+theme = SubResource("Theme_fysr4")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 117.0
+offset_top = 12.0
+offset_right = 157.0
+offset_bottom = 52.0
+
+[node name="circle1" type="TextureRect" parent="Control"]
+self_modulate = Color(0.32549, 0.32549, 0.32549, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_right = -63.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 0
+texture = ExtResource("1_kjr6t")
+
+[node name="circle2" type="TextureRect" parent="Control"]
+self_modulate = Color(0.32549, 0.32549, 0.32549, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_right = -37.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 0
+texture = ExtResource("1_kjr6t")
+
+[node name="circle3" type="TextureRect" parent="Control"]
+self_modulate = Color(0.32549, 0.32549, 0.32549, 1)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_right = -10.0
+offset_bottom = 32.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_vertical = 0
+texture = ExtResource("1_kjr6t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_gcx1p")
+}
+autoplay = "typing indicator loop"

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://2cfugne7ngwi"]
+[gd_scene load_steps=9 format=3 uid="uid://2cfugne7ngwi"]
 
 [ext_resource type="PackedScene" uid="uid://do1mq34dysh3o" path="res://Scenes/speech_bubble_right.tscn" id="1_11cp6"]
 [ext_resource type="Script" path="res://Scripts/DialogueRenderer.gd" id="1_j8w1h"]
 [ext_resource type="JSON" path="res://Assets/Dialogue/test.json" id="2_5rn4e"]
 [ext_resource type="PackedScene" uid="uid://dpk0lnbmv6622" path="res://Scenes/speech_bubble_left.tscn" id="2_a0a2x"]
+[ext_resource type="PackedScene" uid="uid://cmyiskwmoi44h" path="res://Scenes/typing_indicator.tscn" id="5_jhwxa"]
 
 [sub_resource type="SystemFont" id="SystemFont_fdvv2"]
 multichannel_signed_distance_field = true
@@ -92,169 +93,15 @@ qweqwe
 asdf"
 
 [node name="SpeechBubbleLeft" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft/MarginContainer" index="0"]
 theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
-[node name="SpeechBubbleLeft2" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
+[node name="TypingIndicator" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("5_jhwxa")]
 layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft2/MarginContainer" index="0"]
-theme = SubResource("Theme_f85pf")
-text = "aaaaaaaaaaa"
-
-[node name="SpeechBubbleLeft3" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft3/MarginContainer" index="0"]
-theme = SubResource("Theme_f85pf")
-text = "aaaaaaaaaaa"
-
-[node name="SpeechBubbleLeft4" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft4/MarginContainer" index="0"]
-theme = SubResource("Theme_f85pf")
-text = "aaaaaaaaaaa"
-
-[node name="SpeechBubbleLeft5" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft5/MarginContainer" index="0"]
-theme = SubResource("Theme_f85pf")
-text = "aaaaaaaaaaa"
-
-[node name="SpeechBubbleLeft6" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft6/MarginContainer" index="0"]
-theme = SubResource("Theme_f85pf")
-text = "aaaaaaaaaaa"
-
-[node name="SpeechBubbleLeft7" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
-theme = SubResource("Theme_f85pf")
-text = "aaaaaaaaaaa"
-
-[node name="SpeechBubbleRight2" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight2/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight3" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight3/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight4" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight4/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight5" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight5/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight6" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight6/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight7" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight7/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight8" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight8/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight9" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight9/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight10" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight10/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
-
-[node name="SpeechBubbleRight11" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
-layout_mode = 2
-
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight11/MarginContainer" index="0"]
-theme = SubResource("Theme_4dy6m")
-text = "AWFQWF
-qweqwe
-asdf"
 
 [editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight"]
 [editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft2"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft3"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft4"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft5"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft6"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft7"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight2"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight3"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight4"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight5"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight6"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight7"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight8"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight9"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight10"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight11"]
