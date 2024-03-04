@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cmyiskwmoi44h" path="res://Scenes/typing_indicator.tscn" id="5_jhwxa"]
 
 [sub_resource type="SystemFont" id="SystemFont_fdvv2"]
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 msdf_size = 64
 oversampling = 2.3
@@ -83,7 +84,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="SpeechBubbleRight" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight/MarginContainer" index="0"]
@@ -93,7 +94,7 @@ qweqwe
 asdf"
 
 [node name="SpeechBubbleLeft" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-custom_minimum_size = Vector2(0, 128)
+custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft/MarginContainer" index="0"]

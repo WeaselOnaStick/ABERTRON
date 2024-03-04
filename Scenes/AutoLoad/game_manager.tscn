@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=3 uid="uid://bu11u7li3olu4"]
+
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_8dkb7"]
+[ext_resource type="Script" path="res://addons/resonate/music_manager/music_bank.gd" id="2_ub0b1"]
+[ext_resource type="Script" path="res://addons/resonate/music_manager/music_track_resource.gd" id="3_8ihtq"]
+[ext_resource type="Script" path="res://addons/resonate/music_manager/music_stem_resource.gd" id="4_aoef4"]
+[ext_resource type="AudioStream" uid="uid://dhhi6h75fh7an" path="res://ProductionAssets/AmbientScifiSlop/AmbientScifiSlop.wav" id="5_nl5le"]
+[ext_resource type="AudioStream" uid="uid://ckwsaq77m6os3" path="res://ProductionAssets/AmbientScifiSlop/AMBIERTRON/AMBIERTRON_WIP.mp3" id="6_bx26o"]
+
+[sub_resource type="Resource" id="Resource_j0a0i"]
+script = ExtResource("4_aoef4")
+name = "0"
+enabled = true
+volume = 0.0
+stream = ExtResource("5_nl5le")
+
+[sub_resource type="Resource" id="Resource_lla6n"]
+script = ExtResource("3_8ihtq")
+name = "MainMenu"
+bus = ""
+stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_j0a0i")])
+
+[sub_resource type="Resource" id="Resource_qehb2"]
+script = ExtResource("4_aoef4")
+name = ""
+enabled = true
+volume = 0.0
+stream = ExtResource("6_bx26o")
+
+[sub_resource type="Resource" id="Resource_fu7w6"]
+script = ExtResource("3_8ihtq")
+name = "Ambiertron"
+bus = ""
+stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_qehb2")])
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_8dkb7")
+
+[node name="MusicBank" type="Node" parent="."]
+script = ExtResource("2_ub0b1")
+label = "Global"
+tracks = Array[ExtResource("3_8ihtq")]([SubResource("Resource_lla6n"), SubResource("Resource_fu7w6")])

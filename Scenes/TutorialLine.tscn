@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://3oh6soxs1ydr"]
+
+[ext_resource type="Theme" uid="uid://by81nx7sowlss" path="res://Assets/tutorial_rtl_theme.tres" id="1_u2pd2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3j47"]
+bg_color = Color(0.215686, 0.215686, 0.215686, 1)
+corner_radius_top_left = 45
+corner_radius_top_right = 45
+
+[node name="Panel" type="Panel"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -620.0
+offset_top = -254.0
+offset_right = 620.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t3j47")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.07
+anchor_right = 1.0
+anchor_bottom = 0.93
+grow_horizontal = 2
+theme = ExtResource("1_u2pd2")
+bbcode_enabled = true
+text = "[center]THIS IS A TUTORIAL TEXT, MORON
+PRESS [img]res://Assets/Xelu Icons/KeyboardMouse/Light/X_Key_Light.png[/img] TO INTERACT WITH STUFF"
+fit_content = true
+scroll_active = false
+visible_characters = 0
+visible_ratio = 0.0

@@ -28,7 +28,6 @@ func _process(delta):
 func _ready():
 	dialogue_data = dialogue_file.data
 	clear_bubble_container()
-	print(dialogue_data)
 
 func dialog_step():
 	hide_typing_indicator()
@@ -68,9 +67,4 @@ func add_bubble(side := "left", text := "ERROR"):
 	var rtl := new_bubble.get_node("%TextField") as RichTextLabel
 	bubble_container.add_child(new_bubble)
 	rtl.text = text
-	
-	new_bubble.visible = false
-	#this is so fucking stupid 
-	#god bless issue tracking https://github.com/godotengine/godot/issues/36381
-	get_tree().process_frame.connect(new_bubble.fix_h,CONNECT_ONE_SHOT)
 	

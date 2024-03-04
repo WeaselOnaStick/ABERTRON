@@ -15,7 +15,7 @@
 		},
 		{
 			"side" : "right",
-			"text" : "YOU ARE ABERTRON UNIT #009F.\nYOU ARE TO INSPECT PRODUCTS.\nIS THAT CLEAR?",
+			"text" : "YOU ARE IN ABERTRON.\nYOU ARE TO INSPECT.\nIS THAT CLEAR?",
 			"step_trigger" : "manual",
 		},
 		{

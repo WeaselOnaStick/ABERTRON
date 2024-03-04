@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="2_q7xiy"]
 
 [node name="SpeechBubbleRight" type="NinePatchRect"]
-custom_minimum_size = Vector2(0, 128)
+custom_minimum_size = Vector2(0, 640)
 offset_right = 766.0
 offset_bottom = 251.0
 size_flags_vertical = 4
