@@ -21,7 +21,7 @@ func _ready():
 	#MusicManager.banks_updated
 	
 func game_start():
-	MusicManager.updated.connect(MusicManager.play.bind("Global","MainMenu"))
+	MusicManager.updated.connect(MusicManager.play.bind("Global","MainMenu"), CONNECT_ONE_SHOT)
 	PauseMenu.visible = false
 	FPS_HUD.visible = false
 	TutorialGUI.visible = false
@@ -33,6 +33,8 @@ func load_scene(scene_path : StringName, free_current := true):
 	CURRENTLY_LOADING_SCENE = scene_path
 	if CURRENTLY_LOADING_SCENE == main_menu_scene_path:
 		game_state = MAIN_MENU
+		MusicManager.play("Global","MainMenu")
+		game_pause_toggle()
 		PauseMenu.visible = false
 	ResourceLoader.load_threaded_request(CURRENTLY_LOADING_SCENE)
 	cur_loading_screen = LOADING_SCREEN.instantiate()
@@ -46,8 +48,10 @@ func level1_start():
 	game_state = LEVEL
 	FPS_HUD.visible = true
 	TutorialGUI.visible = true
+	get_tree().paused = false
 	TutorialGUI.clear_hints()
 	MusicManager.play("Global","Ambiertron")
+	#MusicManager.updated.connect(MusicManager.play.bind("Global","Ambiertron"), CONNECT_ONE_SHOT)
 	FPS_HUD.toggle_crosshair_visible(false)
 	TutorialGUI.display_hint(TutorialGUI.HINT_BASIC_MOVEMENT)
 	
@@ -67,6 +71,8 @@ func _input(event):
 	
 	if event.is_action_pressed("pause"):
 		game_pause_toggle()
+
+
 
 func game_pause_toggle():
 	if game_state == LEVEL:

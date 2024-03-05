@@ -24,7 +24,7 @@ stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_j0a0i")])
 script = ExtResource("4_aoef4")
 name = ""
 enabled = true
-volume = 0.0
+volume = 6.0
 stream = ExtResource("6_bx26o")
 
 [sub_resource type="Resource" id="Resource_fu7w6"]

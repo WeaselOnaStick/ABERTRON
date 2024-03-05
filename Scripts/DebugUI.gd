@@ -8,6 +8,7 @@ func _ready():
 
 func _process(_delta):
 	%"FPS-TEXT".text = str(Engine.get_frames_per_second())
+	%"PAUSED-TEXT".text = str(get_tree().paused)
 	%"CUR_LOAD_SCENE-TEXT".text = GameManager.CURRENTLY_LOADING_SCENE if GameManager.CURRENTLY_LOADING_SCENE != "" else "<None>"
 	%"MUSIC-TEXT".text = "%s|%s" % [MusicManager._get_current_player().bank_label,MusicManager._get_current_player().track_name]
 	
