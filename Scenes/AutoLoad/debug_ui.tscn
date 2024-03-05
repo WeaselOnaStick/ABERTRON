@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm3kradqd0yo0"]
+
+[ext_resource type="Script" path="res://Scripts/DebugUI.gd" id="1_yoscb"]
+
+[node name="DebugUI" type="CanvasLayer"]
+script = ExtResource("1_yoscb")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+offset_right = 522.0
+offset_bottom = 285.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Basic" type="Panel" parent="TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Basic"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPS" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+layout_mode = 2
+
+[node name="FPS-LABEL" type="Label" parent="TabContainer/Basic/VBoxContainer/FPS"]
+layout_mode = 2
+text = "FPS:"
+
+[node name="FPS-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/FPS"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "FPS-TEXT"
+
+[node name="CUR LOAD SCENE" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Basic/VBoxContainer/CUR LOAD SCENE"]
+layout_mode = 2
+text = "CURRENTLY_LOADING_SCENE:"
+
+[node name="CUR_LOAD_SCENE-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/CUR LOAD SCENE"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PLACEHOLDER TEXT"
+
+[node name="MUSIC" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Basic/VBoxContainer/MUSIC"]
+layout_mode = 2
+text = "MUSIC"
+
+[node name="MUSIC-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/MUSIC"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PLACEHOLDER TEXT"
+
+[node name="DebugText" type="TextEdit" parent="TabContainer/Basic/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/font_size = 16
+text = "AAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAA"
+placeholder_text = "AAAAAA
+AAAAAAAAAAAA
+AAAAAAAAAAAA
+AAAAAA"

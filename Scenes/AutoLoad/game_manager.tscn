@@ -34,6 +34,7 @@ bus = ""
 stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_qehb2")])
 
 [node name="GameManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_8dkb7")
 
 [node name="MusicBank" type="Node" parent="."]

@@ -21,8 +21,8 @@ func clear_bubble_container():
 	for x in bubble_container.get_children():
 		x.queue_free()
 
-func _process(delta):
-	if Input.is_action_just_pressed("debug") and not dialog_busy:
+func interact():
+	if not dialog_busy:
 		dialog_step()
 
 func _ready():

@@ -7,7 +7,8 @@ bg_color = Color(0.215686, 0.215686, 0.215686, 1)
 corner_radius_top_left = 45
 corner_radius_top_right = 45
 
-[node name="Panel" type="Panel"]
+[node name="TutorialHintPanel" type="Panel"]
+self_modulate = Color(1, 1, 1, 0.729412)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -30,8 +31,7 @@ anchor_bottom = 0.93
 grow_horizontal = 2
 theme = ExtResource("1_u2pd2")
 bbcode_enabled = true
-text = "[center]THIS IS A TUTORIAL TEXT, MORON
-PRESS [img]res://Assets/Xelu Icons/KeyboardMouse/Light/X_Key_Light.png[/img] TO INTERACT WITH STUFF"
+text = "PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT "
 fit_content = true
 scroll_active = false
 visible_characters = 0

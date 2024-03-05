@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlhhvm2swb3ho"]
+
+[ext_resource type="Theme" uid="uid://b23iwjsa8qidx" path="res://Assets/default_UI_theme.tres" id="1_nrtsm"]
+
+[sub_resource type="GDScript" id="GDScript_vdss5"]
+script/source = "extends CanvasLayer
+
+
+func _on_return_to_game_pressed():
+	GameManager.game_pause_toggle()
+
+
+func _on_quit_to_menu_pressed():
+	GameManager.load_scene(GameManager.main_menu_scene_path)
+"
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 2
+script = SubResource("GDScript_vdss5")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -202.0
+offset_top = -91.0
+offset_right = 202.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 2
+theme = ExtResource("1_nrtsm")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nrtsm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_nrtsm")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_nrtsm")
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ReturnToGame" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_nrtsm")
+text = "RETURN TO GAME"
+
+[node name="QuitToMenu" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_nrtsm")
+text = "QUIT TO MENU"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ReturnToGame" to="." method="_on_return_to_game_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]

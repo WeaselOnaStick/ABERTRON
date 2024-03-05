@@ -13,5 +13,15 @@ script = ExtResource("1_v1nms")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_wp51u")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="InteractionRay" type="RayCast3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748011, 0)
+target_position = Vector3(0, 0, -3)
+hit_from_inside = true
+hit_back_faces = false
+collide_with_areas = true
+debug_shape_custom_color = Color(0.490196, 0.505882, 0.843137, 1)
+debug_shape_thickness = 5
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.748, 0)

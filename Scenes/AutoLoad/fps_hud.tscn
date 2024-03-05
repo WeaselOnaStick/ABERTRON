@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqeg416xxo6sf"]
+
+[ext_resource type="Texture2D" uid="uid://f5a82craqult" path="res://Assets/Sprites/KenneyCrosshairs/White Retina/crosshair109.png" id="1_7ltv6"]
+[ext_resource type="Script" path="res://Scripts/fps_hud.gd" id="1_7moy1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tqu1m"]
+
+[node name="FPS_HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7moy1")
+CROSSHAIR_COLOR_DEFAULT = Color(1, 1, 1, 0.2)
+CROSSHAIR_COLOR_INTERACTABLE = Color(0.67451, 0.12549, 0.12549, 0.45098)
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_tqu1m")
+
+[node name="Crosshair" type="Control" parent="."]
+modulate = Color(0.67451, 0.12549, 0.12549, 0.45098)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Crosshair"]
+texture = ExtResource("1_7ltv6")

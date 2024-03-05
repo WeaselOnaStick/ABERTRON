@@ -1,4 +1,3 @@
-@tool
 class_name SpeechBubble extends NinePatchRect
 
 @onready var rtl := %TextField
@@ -14,7 +13,7 @@ func fix_h():
 	
 	custom_minimum_size.y = 128 + 64 * (rtl.get_content_height()/67-1)
 	visible = true
-	var tw := create_tween().tween_property(self, "modulate",Color("ffffff"), 0.15).from(Color("ffffff00"))
+	var _tw := create_tween().tween_property(self, "modulate",Color("ffffff"), 0.15).from(Color("ffffff00"))
 
 
 func _process(delta):

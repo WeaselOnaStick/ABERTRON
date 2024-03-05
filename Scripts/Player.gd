@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var SPEED := 5.0
 @export var mouse_sensitivity := 0.002
 @onready var cam = $Camera3D
+@onready var interaction_ray = %InteractionRay
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,18 +27,35 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	move_and_slide()
-
+	
+	if interaction_ray.is_colliding() and interaction_ray.get_collider().get_parent().has_method("interact"):
+		FPS_HUD.toggle_crosshair_highlight(true)
+	else:
+		FPS_HUD.toggle_crosshair_highlight(false)
 
 func _input(event):
+	# toggle mouse mode
 	if event.is_action_pressed("mouse_toggle"):
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-			
 		
+	# mouse look
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		event = event as InputEventMouseMotion
 		
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		cam.rotate_x(-event.relative.y * mouse_sensitivity)
+		interaction_ray.rotation = cam.rotation
+	
+	if event.is_action_pressed("interact"):
+		interact()
+
+func interact():
+	DebugUI.DebugLog(interaction_ray.get_collider())
+	if not interaction_ray.is_colliding():
+		return
+	var collider = interaction_ray.get_collider()
+	if collider.get_parent().has_method("interact"):
+		collider.get_parent().interact()
