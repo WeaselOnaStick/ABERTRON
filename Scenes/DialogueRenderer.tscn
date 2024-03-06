@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://2cfugne7ngwi"]
+[gd_scene load_steps=10 format=3 uid="uid://2cfugne7ngwi"]
 
 [ext_resource type="PackedScene" uid="uid://do1mq34dysh3o" path="res://Scenes/speech_bubble_right.tscn" id="1_11cp6"]
 [ext_resource type="Script" path="res://Scripts/DialogueRenderer.gd" id="1_j8w1h"]
 [ext_resource type="JSON" path="res://Assets/Dialogue/test.json" id="2_5rn4e"]
 [ext_resource type="PackedScene" uid="uid://dpk0lnbmv6622" path="res://Scenes/speech_bubble_left.tscn" id="2_a0a2x"]
 [ext_resource type="PackedScene" uid="uid://cmyiskwmoi44h" path="res://Scenes/typing_indicator.tscn" id="5_jhwxa"]
+[ext_resource type="PackedScene" uid="uid://bs0a3uj83445s" path="res://Scenes/end_of_dialogue.tscn" id="6_5u6bn"]
 
 [sub_resource type="SystemFont" id="SystemFont_fdvv2"]
 subpixel_positioning = 0
@@ -102,6 +103,9 @@ theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
 [node name="TypingIndicator" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("5_jhwxa")]
+layout_mode = 2
+
+[node name="EndOfDialogue" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("6_5u6bn")]
 layout_mode = 2
 
 [editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight"]

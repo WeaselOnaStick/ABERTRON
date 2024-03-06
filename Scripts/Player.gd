@@ -5,12 +5,14 @@ extends CharacterBody3D
 @onready var cam = $Camera3D
 @onready var interaction_ray = %InteractionRay
 
+var can_interact = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	GameManager.can_player_interact_override.connect(func(x): can_interact = x)
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -54,6 +56,8 @@ func _input(event):
 
 func interact():
 	DebugUI.DebugLog(interaction_ray.get_collider())
+	if not can_interact:
+		return
 	if not interaction_ray.is_colliding():
 		return
 	var collider = interaction_ray.get_collider()

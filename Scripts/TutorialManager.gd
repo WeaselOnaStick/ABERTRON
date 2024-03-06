@@ -39,9 +39,9 @@ func display_hint(text : String, center := true, autofade := 10.0):
 	rtl.text += text
 	rtl.text = rtl.text.replace("[img]", "[img=0x48]")
 	
-	var tw_clr := create_tween().tween_property(new_line, "modulate", Color("#ffffff"), 1.0).from(Color("#ffffffba"))
-	var tw_txt := create_tween().tween_property(rtl, "visible_ratio", 1.0, 2).from(0.0)
-	var tw_fade := create_tween().tween_property(new_line, "modulate", Color("#ffffff00"), 1.0).set_delay(autofade)
+	var _tw_clr := create_tween().tween_property(new_line, "modulate", Color("#ffffff"), 1.0).from(Color("#ffffffba"))
+	var _tw_txt := create_tween().tween_property(rtl, "visible_ratio", 1.0, 2).from(0.0)
+	var _tw_fade := create_tween().tween_property(new_line, "modulate", Color("#ffffff00"), 1.0).set_delay(autofade)
 	
-	await tw_fade.finished
+	await _tw_fade.finished
 	hint_ended.emit()

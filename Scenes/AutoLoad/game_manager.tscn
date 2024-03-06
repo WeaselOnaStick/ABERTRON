@@ -11,7 +11,7 @@
 script = ExtResource("4_aoef4")
 name = "0"
 enabled = true
-volume = 0.0
+volume = 3.4
 stream = ExtResource("5_nl5le")
 
 [sub_resource type="Resource" id="Resource_lla6n"]

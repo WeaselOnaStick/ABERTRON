@@ -16,15 +16,13 @@ var cur_scene : Node
 
 var mouse_mode_cache
 
+signal can_player_interact_override(val : bool)
+
 func _ready():
 	call_deferred("game_start")
 	#MusicManager.banks_updated
 	
 func game_start():
-	MusicManager.updated.connect(MusicManager.play.bind("Global","MainMenu"), CONNECT_ONE_SHOT)
-	PauseMenu.visible = false
-	FPS_HUD.visible = false
-	TutorialGUI.visible = false
 	load_scene(main_menu_scene_path)
 
 func load_scene(scene_path : StringName, free_current := true):
@@ -33,9 +31,12 @@ func load_scene(scene_path : StringName, free_current := true):
 	CURRENTLY_LOADING_SCENE = scene_path
 	if CURRENTLY_LOADING_SCENE == main_menu_scene_path:
 		game_state = MAIN_MENU
-		MusicManager.play("Global","MainMenu")
+		MusicManager.updated.connect(MusicManager.play.bind("Global","MainMenu"), CONNECT_ONE_SHOT)
 		game_pause_toggle()
 		PauseMenu.visible = false
+		TutorialGUI.visible = false
+		FPS_HUD.visible = false
+		TutorialGUI.clear_hints()
 	ResourceLoader.load_threaded_request(CURRENTLY_LOADING_SCENE)
 	cur_loading_screen = LOADING_SCREEN.instantiate()
 	add_child(cur_loading_screen)
@@ -49,6 +50,7 @@ func level1_start():
 	FPS_HUD.visible = true
 	TutorialGUI.visible = true
 	get_tree().paused = false
+	can_player_interact_override.emit(false)
 	TutorialGUI.clear_hints()
 	MusicManager.play("Global","Ambiertron")
 	#MusicManager.updated.connect(MusicManager.play.bind("Global","Ambiertron"), CONNECT_ONE_SHOT)
@@ -59,6 +61,7 @@ func level1_start():
 	await get_tree().create_timer(5).timeout
 	TutorialGUI.display_hint(TutorialGUI.HINT_INTERACTIONS)
 	FPS_HUD.toggle_crosshair_visible(true)
+	can_player_interact_override.emit(true)
 	await TutorialGUI.hint_ended
 	await get_tree().create_timer(5).timeout
 	TutorialGUI.display_hint(TutorialGUI.HINT_PAUSE)

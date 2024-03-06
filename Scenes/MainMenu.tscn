@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://domlcgkqfxssa"]
+[gd_scene load_steps=10 format=3 uid="uid://domlcgkqfxssa"]
 
 [ext_resource type="FontFile" uid="uid://dkc6s50e4btqd" path="res://Assets/Fonts/Mulish/Mulish-Black.ttf" id="1_hr4ks"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_s2ky1"]
+[ext_resource type="Theme" uid="uid://b23iwjsa8qidx" path="res://Assets/default_UI_theme.tres" id="2_16j5p"]
+[ext_resource type="FontFile" uid="uid://cpb5v2tlbbc80" path="res://Assets/Fonts/poppins/Poppins-ExtraBold.ttf" id="3_4uony"]
+[ext_resource type="FontFile" uid="uid://1j2o4rx4vxgu" path="res://Assets/Fonts/1408_TheEnd.ttf" id="4_t2cgu"]
 
 [sub_resource type="Shader" id="Shader_3uyu4"]
 code = "// Original by @ENDESGA at https://www.shadertoy.com/view/dlKyWw
@@ -93,13 +96,37 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ysta7"]
 shader = SubResource("Shader_3uyu4")
-shader_parameter/colorMode = 1
+shader_parameter/colorMode = 0
 shader_parameter/color = Color(0.988235, 0.917647, 0.898039, 0.427451)
 shader_parameter/timescale = 0.01
 shader_parameter/hScrollSpeedFactor = 1.0
-shader_parameter/vScrollSpeedFactor = 0.0
+shader_parameter/vScrollSpeedFactor = 1.0
 shader_parameter/entropyFactor = 1.0
-shader_parameter/sharpness = 5.385
+shader_parameter/sharpness = 10.0
+
+[sub_resource type="Theme" id="Theme_pujk5"]
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 7
+Label/font_sizes/font_size = 135
+Label/fonts/font = ExtResource("3_4uony")
+
+[sub_resource type="Theme" id="Theme_5o41p"]
+Label/colors/font_color = Color(0.941176, 0.631373, 0.635294, 0.737255)
+Label/colors/font_outline_color = Color(1, 1, 1, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 7
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("3_4uony")
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_s2ky1")
@@ -111,59 +138,168 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -106.5
-offset_right = 20.0
-offset_bottom = 106.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 750
-theme_override_constants/margin_top = 450
-theme_override_constants/margin_right = 750
-theme_override_constants/margin_bottom = 450
+theme_override_constants/margin_left = 650
+theme_override_constants/margin_top = 400
+theme_override_constants/margin_right = 650
+theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="MainMenuButtons" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
+theme = ExtResource("2_16j5p")
 theme_override_constants/separation = 12
 
-[node name="StartGame" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="StartGame" type="Button" parent="MarginContainer/MainMenuButtons"]
 layout_mode = 2
+theme = ExtResource("2_16j5p")
 theme_override_fonts/font = ExtResource("1_hr4ks")
 theme_override_font_sizes/font_size = 48
 text = "START NEW GAME"
 
-[node name="LoadGame" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="LoadGame" type="Button" parent="MarginContainer/MainMenuButtons"]
 layout_mode = 2
+theme = ExtResource("2_16j5p")
 theme_override_fonts/font = ExtResource("1_hr4ks")
 theme_override_font_sizes/font_size = 48
 disabled = true
 text = "LOAD GAME (TBD)"
 
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Settings" type="Button" parent="MarginContainer/MainMenuButtons"]
 layout_mode = 2
+theme = ExtResource("2_16j5p")
 theme_override_fonts/font = ExtResource("1_hr4ks")
 theme_override_font_sizes/font_size = 48
 text = "SETTINGS"
 
-[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="MarginContainer/MainMenuButtons"]
 layout_mode = 2
+theme = ExtResource("2_16j5p")
 theme_override_fonts/font = ExtResource("1_hr4ks")
 theme_override_font_sizes/font_size = 48
 text = "EXIT"
 
-[node name="Credits" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="MarginContainer/MainMenuButtons"]
 layout_mode = 2
+theme = ExtResource("2_16j5p")
 theme_override_fonts/font = ExtResource("1_hr4ks")
 theme_override_font_sizes/font_size = 48
 disabled = true
 text = "???"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StartGame" to="." method="_on_start_game_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[node name="SettingsButtons" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 256
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/SettingsButtons"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsButtons/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_16j5p")
+text = "MUSIC VOLUME"
+
+[node name="VolumeSlider" type="HSlider" parent="MarginContainer/SettingsButtons/GridContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(409.6, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 10.0
+step = 0.05
+
+[node name="Label2" type="Label" parent="MarginContainer/SettingsButtons/GridContainer"]
+layout_mode = 2
+theme = ExtResource("2_16j5p")
+text = "FULLSCREEN"
+
+[node name="FullscreenCheckbox" type="CheckBox" parent="MarginContainer/SettingsButtons/GridContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = ExtResource("2_16j5p")
+button_pressed = true
+expand_icon = true
+
+[node name="Label" type="Label" parent="MarginContainer/SettingsButtons/GridContainer/FullscreenCheckbox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.157
+anchor_top = 0.39
+anchor_right = -0.157
+anchor_bottom = 0.39
+offset_left = -156.208
+offset_top = 4.16
+offset_right = 9.792
+offset_bottom = 39.16
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.085615
+theme_override_colors/font_color = Color(0.333333, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_t2cgu")
+theme_override_font_sizes/font_size = 17
+text = "Abandon all hope,
+   ye who enter here ☠️"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/SettingsButtons"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 150
+
+[node name="BackToMainMenu" type="Button" parent="MarginContainer/SettingsButtons/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_16j5p")
+text = "MAIN MENU"
+
+[node name="GameTitle" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -322.0
+offset_top = 92.0
+offset_right = 329.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme = SubResource("Theme_pujk5")
+text = "ABERTRON"
+
+[node name="GameTitleFooter" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_top = 945.0
+offset_right = 271.0
+offset_bottom = 1054.0
+grow_horizontal = 2
+theme = SubResource("Theme_5o41p")
+text = "Made by Weasel On a Stick
+for Acerola Jam 0 
+"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/MainMenuButtons/StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="MarginContainer/MainMenuButtons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/MainMenuButtons/Exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="MarginContainer/SettingsButtons/GridContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/SettingsButtons/GridContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
+[connection signal="pressed" from="MarginContainer/SettingsButtons/MarginContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]

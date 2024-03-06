@@ -7,10 +7,13 @@ const SPEECH_BUBBLE_RIGHT = preload("res://Scenes/speech_bubble_right.tscn")
 const TYPING_INDICATOR = preload("res://Scenes/typing_indicator.tscn")
 var typing_bubble : Panel
 
+const END_OF_DIALOGUE = preload("res://Scenes/end_of_dialogue.tscn")
+
 @onready var bubble_container = $Panel/MarginContainer/VBoxContainer
 
+signal dialogue_ended
 
-var cur_line_idx = -1
+var cur_line_idx = 0
 var cur_line : Dictionary
 var dialog_busy := false
 
@@ -31,11 +34,17 @@ func _ready():
 
 func dialog_step():
 	hide_typing_indicator()
-	cur_line_idx += 1
-	if cur_line_idx >= len(dialogue_data["lines"]):
-		return
+	DebugUI.DebugLog("cur_line_idx %s (out of %s)" % [cur_line_idx,len(dialogue_data["lines"])])
 	cur_line = dialogue_data["lines"][cur_line_idx]
 	add_bubble(cur_line["side"],cur_line["text"])
+	
+	if cur_line_idx >= len(dialogue_data["lines"])-1:
+		DebugUI.DebugLog("reached end of dialogue")
+		dialogue_ended.emit()
+		bubble_container.add_child(END_OF_DIALOGUE.instantiate())
+	
+	cur_line_idx += 1
+	
 	if cur_line.get("step_trigger") == "manual":
 		dialog_busy = false
 		

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs0a3uj83445s"]
+
+[ext_resource type="FontFile" uid="uid://b1s6hcs7pntqw" path="res://Assets/Fonts/Mulish/Mulish-SemiBold.ttf" id="1_2anyo"]
+
+[node name="EndOfDialogue" type="Label"]
+modulate = Color(0.65098, 0.65098, 0.65098, 1)
+theme_override_fonts/font = ExtResource("1_2anyo")
+theme_override_font_sizes/font_size = 48
+text = "(Connection Terminated)"
+horizontal_alignment = 1

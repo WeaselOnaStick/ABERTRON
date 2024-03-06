@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://b23iwjsa8qidx"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b23iwjsa8qidx"]
 
 [ext_resource type="FontFile" uid="uid://dkc6s50e4btqd" path="res://Assets/Fonts/Mulish/Mulish-Black.ttf" id="1_fth8t"]
+[ext_resource type="Texture2D" uid="uid://cqltp6fegm1wj" path="res://Assets/Sprites/chk_t.svg" id="2_ih4b4"]
+[ext_resource type="Texture2D" uid="uid://c7mx3u0quc84n" path="res://Assets/Sprites/chk_e.svg" id="3_f7edd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_npaup"]
 
@@ -22,6 +24,8 @@ corner_detail = 5
 [resource]
 Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("1_fth8t")
+CheckBox/icons/checked = ExtResource("2_ih4b4")
+CheckBox/icons/unchecked = ExtResource("3_f7edd")
 HBoxContainer/constants/separation = 4
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(1, 1, 1, 1)
