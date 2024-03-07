@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://2cfugne7ngwi"]
+[gd_scene load_steps=12 format=3 uid="uid://2cfugne7ngwi"]
 
 [ext_resource type="PackedScene" uid="uid://do1mq34dysh3o" path="res://Scenes/speech_bubble_right.tscn" id="1_11cp6"]
 [ext_resource type="Script" path="res://Scripts/DialogueRenderer.gd" id="1_j8w1h"]
@@ -49,11 +49,111 @@ RichTextLabel/font_sizes/mono_font_size = 16
 RichTextLabel/font_sizes/normal_font_size = 48
 RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
 
+[sub_resource type="Shader" id="Shader_qbmi6"]
+code = "// https://godotshaders.com/shader/crt-shader/
+
+shader_type canvas_item;
+
+//const float PI = 3.1415926535;
+
+// ブラウン管のガラスの曲がり具合（フラットなやつは0.0でいいかな）
+uniform float crt_curve : hint_range( 0.0, 1.0 ) = 0.02;
+// 走査線の濃さ
+uniform float crt_scan_line_color : hint_range( 0.0, 1.0 ) = 0.347;
+// 光量
+uniform float aperture_grille_rate : hint_range( 0.0, 1.0 ) = 0.4;
+// RFスイッチ的ブラー
+uniform float rf_switch_esque_blur : hint_range( 0.0, 1.0 ) = 1.0;
+// 白色ノイズ
+uniform float white_noise_rate : hint_range( 0.0, 1.0 ) = 0.0;
+
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
+
+float random( vec2 pos )
+{ 
+	return fract(sin(dot(pos, vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void fragment( )
+{
+	// ガラスの曲がり具合
+	vec2 crt_curve_shift = ( vec2( 1.0, 1.0 ) - sin( UV.yx * PI ) ) * crt_curve;
+	vec2 crt_curve_scale = vec2( 1.0, 1.0 ) + crt_curve_shift * 2.0;
+	vec2 texture_fixed_uv = UV * crt_curve_scale - crt_curve_shift;
+	vec2 fixed_uv = SCREEN_UV * crt_curve_scale - crt_curve_shift;
+	// 範囲外を消す
+	float enable_color = float( 0.0 <= texture_fixed_uv.x && texture_fixed_uv.x <= 1.0 && 0.0 <= texture_fixed_uv.y && texture_fixed_uv.y <= 1.0 );
+
+	// ガラスの曲がり具合から元色を取得 + RFスイッチ的ブラー
+	COLOR.rgb = (
+		(
+			texture( SCREEN_TEXTURE, fixed_uv ).rgb
+		*	( 1.0 - rf_switch_esque_blur * 0.5 )
+		)
+	+	(
+			(
+				texture( SCREEN_TEXTURE, fixed_uv + vec2( -SCREEN_PIXEL_SIZE.x * 3.1, 0.0 ) ).rgb
+			+	texture( SCREEN_TEXTURE, fixed_uv + vec2( SCREEN_PIXEL_SIZE.x * 3.1, 0.0 ) ).rgb
+			)
+			*	( rf_switch_esque_blur * 0.25 )	// （RFノイズ）0.5 * （テクスチャから読んだ2箇所を半分にしたい）0.5
+		)
+	) * enable_color;
+	COLOR.a = 1.0;
+
+	// ------------------------------------------------
+	// 以下はアパーチャグリル上の1ピクセルごとの処理
+	vec2 aperture_grille_pixel = vec2( floor( ( fixed_uv.x / SCREEN_PIXEL_SIZE.x ) / 3.0 ) * 3.0, fixed_uv.y );
+
+	// 白色ノイズ
+	float white_noise = random( aperture_grille_pixel + vec2( sin( TIME * 0.543254 ), cos( TIME * 0.254323563 ) ) );
+	COLOR.rgb = mix(
+		COLOR.rgb
+	,	vec3( white_noise, white_noise, white_noise )
+	,	white_noise_rate * enable_color
+	);
+
+	// アパーチャグリル再現
+	float aperture_grille_point = mod( ( ( SCREEN_UV.x * crt_curve_scale.x ) - crt_curve_shift.x ) / SCREEN_PIXEL_SIZE.x, 3.0 );
+	float aperture_grille_r_rate = clamp( 1.0 - aperture_grille_point, 0.0, 1.0 ) + clamp( aperture_grille_point - 2.0, 0.0, 1.0 );
+	float aperture_grille_g_rate = clamp( 1.0 - abs( 1.0 - aperture_grille_point ), 0.0, 1.0 );
+	float aperture_grille_b_rate = 1.0 - aperture_grille_r_rate - aperture_grille_g_rate;
+	COLOR = clamp(
+		COLOR * vec4(
+			normalize( vec3(
+				clamp( aperture_grille_r_rate, aperture_grille_rate, 1.0 )
+			,	clamp( aperture_grille_g_rate, aperture_grille_rate, 1.0 )
+			,	clamp( aperture_grille_b_rate, aperture_grille_rate, 1.0 )
+			) )
+		,	1.0
+		)
+	,	vec4( 0.0, 0.0, 0.0, 0.0 )
+	,	vec4( 1.0, 1.0, 1.0, 1.0 )
+	);
+
+	// 走査線
+	COLOR = mix(
+		COLOR
+	,	vec4( 0.0, 0.0, 0.0, 1.0 )
+	,	float( 0 == int( fixed_uv.y / SCREEN_PIXEL_SIZE.y ) % 2 ) * crt_scan_line_color
+	);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0sgp"]
+shader = SubResource("Shader_qbmi6")
+shader_parameter/crt_curve = 0.0
+shader_parameter/crt_scan_line_color = 0.142
+shader_parameter/aperture_grille_rate = 0.526
+shader_parameter/rf_switch_esque_blur = 0.123
+shader_parameter/white_noise_rate = 0.061
+
 [node name="DialogueRenderer" type="Control"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -896.0
+offset_bottom = 968.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j8w1h")
@@ -65,48 +165,127 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 2335.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 662.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+follow_focus = true
+horizontal_scroll_mode = 0
+
+[node name="Margin" type="MarginContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="BubbleContainer" type="VBoxContainer" parent="Panel/ScrollContainer/Margin"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="SpeechBubbleRight" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 64)
+[node name="SpeechBubbleRight" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("1_11cp6")]
+custom_minimum_size = Vector2(0, 260)
 layout_mode = 2
 
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight/MarginContainer" index="0"]
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
 theme = SubResource("Theme_4dy6m")
 text = "AWFQWF
 qweqwe
 asdf"
 
-[node name="SpeechBubbleLeft" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_a0a2x")]
-custom_minimum_size = Vector2(0, 64)
+[node name="SpeechBubbleLeft3" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="TextField" parent="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft/MarginContainer" index="0"]
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3/MarginContainer" index="0"]
 theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
-[node name="TypingIndicator" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("5_jhwxa")]
+[node name="SpeechBubbleLeft4" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[node name="EndOfDialogue" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("6_5u6bn")]
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4/MarginContainer" index="0"]
+theme = SubResource("Theme_f85pf")
+text = "aaaaaaaaaaa"
+
+[node name="SpeechBubbleLeft5" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleRight"]
-[editable path="Panel/MarginContainer/VBoxContainer/SpeechBubbleLeft"]
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5/MarginContainer" index="0"]
+theme = SubResource("Theme_f85pf")
+text = "aaaaaaaaaaa"
+
+[node name="SpeechBubbleLeft6" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6/MarginContainer" index="0"]
+theme = SubResource("Theme_f85pf")
+text = "aaaaaaaaaaa"
+
+[node name="SpeechBubbleLeft7" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 2174)
+layout_mode = 2
+
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
+theme = SubResource("Theme_f85pf")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elementum leo non consequat. Integer at massa nec nisi dictum ornare. Mauris sit amet metus euismod, venenatis ante sit amet, faucibus dui. Sed vel dolor hendrerit, convallis turpis non, tristique justo. Suspendisse potenti. Sed rutrum, enim id cursus ornare, turpis odio placerat massa, quis vulputate nunc elit vel nulla. Aliquam id gravida nulla. Vestibulum laoreet lectus eget vestibulum tincidunt. Nam non sem augue. Proin hendrerit at justo sed bibendum. Aenean faucibus condimentum sodales. Nullam accumsan dapibus varius. Nulla facilisis ipsum at mi pellentesque condimentum.
+
+Sed pulvinar felis pretium ex molestie vehicula. Integer pulvinar augue tortor, eu blandit risus aliquet et. Nunc et nisl rhoncus, luctus sapien vel, aliquam purus. Cras at ligula pellentesque, porta felis at, semper ipsum. Nam pretium luctus velit, nec posuere erat. Vivamus commodo, lectus eu congue condimentum, neque ligula vulputate neque, nec fringilla orci sapien non augue. Nam posuere nisi arcu, semper faucibus eros tristique commodo. In vel ante vulputate, gravida velit at, cursus dolor."
+
+[node name="SpeechBubbleLeft8" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 2108)
+layout_mode = 2
+
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8/MarginContainer" index="0"]
+theme = SubResource("Theme_f85pf")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elementum leo non consequat. Integer at massa nec nisi dictum ornare. Mauris sit amet metus euismod, venenatis ante sit amet, faucibus dui. Sed vel dolor hendrerit, convallis turpis non, tristique justo. Suspendisse potenti. Sed rutrum, enim id cursus ornare, turpis odio placerat massa, quis vulputate nunc elit vel nulla. Aliquam id gravida nulla. Vestibulum laoreet lectus eget vestibulum tincidunt. Nam non sem augue. Proin hendrerit at justo sed bibendum. Aenean faucibus condimentum sodales. Nullam accumsan dapibus varius. Nulla facilisis ipsum at mi pellentesque condimentum.
+Sed pulvinar felis pretium ex molestie vehicula. Integer pulvinar augue tortor, eu blandit risus aliquet et. Nunc et nisl rhoncus, luctus sapien vel, aliquam purus. Cras at ligula pellentesque, porta felis at, semper ipsum. Nam pretium luctus velit, nec posuere erat. Vivamus commodo, lectus eu congue condimentum, neque ligula vulputate neque, nec fringilla orci sapien non augue. Nam posuere nisi arcu, semper faucibus eros tristique commodo. In vel ante vulputate, gravida velit at, cursus dolor."
+
+[node name="SpeechBubbleLeft9" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 2174)
+layout_mode = 2
+
+[node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9/MarginContainer" index="0"]
+theme = SubResource("Theme_f85pf")
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate elementum leo non consequat. Integer at massa nec nisi dictum ornare. Mauris sit amet metus euismod, venenatis ante sit amet, faucibus dui. Sed vel dolor hendrerit, convallis turpis non, tristique justo. Suspendisse potenti. Sed rutrum, enim id cursus ornare, turpis odio placerat massa, quis vulputate nunc elit vel nulla. Aliquam id gravida nulla. Vestibulum laoreet lectus eget vestibulum tincidunt. Nam non sem augue. Proin hendrerit at justo sed bibendum. Aenean faucibus condimentum sodales. Nullam accumsan dapibus varius. Nulla facilisis ipsum at mi pellentesque condimentum.
+
+Sed pulvinar felis pretium ex molestie vehicula. Integer pulvinar augue tortor, eu blandit risus aliquet et. Nunc et nisl rhoncus, luctus sapien vel, aliquam purus. Cras at ligula pellentesque, porta felis at, semper ipsum. Nam pretium luctus velit, nec posuere erat. Vivamus commodo, lectus eu congue condimentum, neque ligula vulputate neque, nec fringilla orci sapien non augue. Nam posuere nisi arcu, semper faucibus eros tristique commodo. In vel ante vulputate, gravida velit at, cursus dolor."
+
+[node name="TypingIndicator" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("5_jhwxa")]
+layout_mode = 2
+
+[node name="EndOfDialogue" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("6_5u6bn")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_b0sgp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+auto_translate = false
+localize_numeral_system = false
+
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8"]
+[editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9"]

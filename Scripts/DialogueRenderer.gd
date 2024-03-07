@@ -9,7 +9,8 @@ var typing_bubble : Panel
 
 const END_OF_DIALOGUE = preload("res://Scenes/end_of_dialogue.tscn")
 
-@onready var bubble_container = $Panel/MarginContainer/VBoxContainer
+@onready var scroll_container := $Panel/ScrollContainer
+@onready var bubble_container := %BubbleContainer
 
 signal dialogue_ended
 
@@ -26,22 +27,28 @@ func clear_bubble_container():
 
 func interact():
 	if not dialog_busy:
-		dialog_step()
+		_dialog_step()
 
 func _ready():
 	dialogue_data = dialogue_file.data
 	clear_bubble_container()
+	
 
-func dialog_step():
+func _dialog_step():
 	hide_typing_indicator()
 	DebugUI.DebugLog("cur_line_idx %s (out of %s)" % [cur_line_idx,len(dialogue_data["lines"])])
+	
+	if cur_line_idx >= len(dialogue_data["lines"])-1:
+		return
+	
 	cur_line = dialogue_data["lines"][cur_line_idx]
 	add_bubble(cur_line["side"],cur_line["text"])
 	
-	if cur_line_idx >= len(dialogue_data["lines"])-1:
+	if cur_line_idx == len(dialogue_data["lines"])-2:
 		DebugUI.DebugLog("reached end of dialogue")
-		dialogue_ended.emit()
 		bubble_container.add_child(END_OF_DIALOGUE.instantiate())
+		dialogue_ended.emit()
+	
 	
 	cur_line_idx += 1
 	
@@ -52,7 +59,7 @@ func dialog_step():
 		dialog_busy = true
 		add_typing_indicator()
 		await get_tree().create_timer(cur_line["delay_after"]).timeout
-		dialog_step()
+		_dialog_step()
 
 func add_typing_indicator():
 	if typing_bubble != null:
@@ -73,7 +80,12 @@ func add_bubble(side := "left", text := "ERROR"):
 	elif side == "right":
 		new_bubble = SPEECH_BUBBLE_RIGHT.instantiate()
 	
-	var rtl := new_bubble.get_node("%TextField") as RichTextLabel
 	bubble_container.add_child(new_bubble)
-	rtl.text = text
-	
+	new_bubble.init()
+	new_bubble.rtl.text = text
+	#new_bubble.set_focus_mode(Control.FOCUS_ALL)
+	#new_bubble.grab_focus()
+	var vbar = scroll_container.get_v_scroll_bar() as VScrollBar
+	#DebugUI.DebugLog("Scroll val = %s" % vbar.value)
+	create_tween().tween_property(vbar, "value", vbar.max_value, 0.5)
+	#vbar.value = vbar.max_value

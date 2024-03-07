@@ -13,65 +13,65 @@ offset_bottom = 285.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 
-[node name="Basic" type="Panel" parent="TabContainer"]
+[node name="Basic Debug" type="Panel" parent="TabContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Basic"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Basic Debug"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 
-[node name="FPS" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+[node name="FPS" type="HBoxContainer" parent="TabContainer/Basic Debug/VBoxContainer"]
 layout_mode = 2
 
-[node name="FPS-LABEL" type="Label" parent="TabContainer/Basic/VBoxContainer/FPS"]
+[node name="FPS-LABEL" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/FPS"]
 layout_mode = 2
 text = "FPS:"
 
-[node name="FPS-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/FPS"]
+[node name="FPS-TEXT" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/FPS"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "FPS-TEXT"
 
-[node name="PAUSED" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+[node name="PAUSED" type="HBoxContainer" parent="TabContainer/Basic Debug/VBoxContainer"]
 layout_mode = 2
 
-[node name="PAUSED-LABEL" type="Label" parent="TabContainer/Basic/VBoxContainer/PAUSED"]
+[node name="PAUSED-LABEL" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/PAUSED"]
 layout_mode = 2
 text = "PAUSED?"
 
-[node name="PAUSED-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/PAUSED"]
+[node name="PAUSED-TEXT" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/PAUSED"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "IDUNNO"
 
-[node name="CUR LOAD SCENE" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+[node name="CUR LOAD SCENE" type="HBoxContainer" parent="TabContainer/Basic Debug/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Basic/VBoxContainer/CUR LOAD SCENE"]
+[node name="Label" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/CUR LOAD SCENE"]
 layout_mode = 2
 text = "CURRENTLY_LOADING_SCENE:"
 
-[node name="CUR_LOAD_SCENE-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/CUR LOAD SCENE"]
+[node name="CUR_LOAD_SCENE-TEXT" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/CUR LOAD SCENE"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "PLACEHOLDER TEXT"
 
-[node name="MUSIC" type="HBoxContainer" parent="TabContainer/Basic/VBoxContainer"]
+[node name="MUSIC" type="HBoxContainer" parent="TabContainer/Basic Debug/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="TabContainer/Basic/VBoxContainer/MUSIC"]
+[node name="Label" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/MUSIC"]
 layout_mode = 2
 text = "MUSIC"
 
-[node name="MUSIC-TEXT" type="Label" parent="TabContainer/Basic/VBoxContainer/MUSIC"]
+[node name="MUSIC-TEXT" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/MUSIC"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "PLACEHOLDER TEXT"
 
-[node name="DebugText" type="TextEdit" parent="TabContainer/Basic/VBoxContainer"]
+[node name="DebugText" type="TextEdit" parent="TabContainer/Basic Debug/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2

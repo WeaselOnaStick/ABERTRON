@@ -19,7 +19,8 @@ var mouse_mode_cache
 signal can_player_interact_override(val : bool)
 
 func _ready():
-	call_deferred("game_start")
+	pass
+	#call_deferred("game_start")
 	#MusicManager.banks_updated
 	
 func game_start():
@@ -55,16 +56,16 @@ func level1_start():
 	MusicManager.play("Global","Ambiertron")
 	#MusicManager.updated.connect(MusicManager.play.bind("Global","Ambiertron"), CONNECT_ONE_SHOT)
 	FPS_HUD.toggle_crosshair_visible(false)
-	TutorialGUI.display_hint(TutorialGUI.HINT_BASIC_MOVEMENT)
 	
+	TutorialGUI.display_hint(TutorialGUI.HINT_BASIC_MOVEMENT,1)
 	await TutorialGUI.hint_ended
-	await get_tree().create_timer(5).timeout
-	TutorialGUI.display_hint(TutorialGUI.HINT_INTERACTIONS)
+	await get_tree().create_timer(1).timeout
+	TutorialGUI.display_hint(TutorialGUI.HINT_INTERACTIONS,1)
 	FPS_HUD.toggle_crosshair_visible(true)
 	can_player_interact_override.emit(true)
 	await TutorialGUI.hint_ended
-	await get_tree().create_timer(5).timeout
-	TutorialGUI.display_hint(TutorialGUI.HINT_PAUSE)
+	await get_tree().create_timer(1).timeout
+	TutorialGUI.display_hint(TutorialGUI.HINT_PAUSE,1)
 
 
 

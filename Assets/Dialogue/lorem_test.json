@@ -1,0 +1,49 @@
+{
+	"init_mode" : "manual", 
+	"lines": [
+		{
+			"side" : "left",
+			"text" : "LOREM START",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl eros, porta a dictum in, pulvinar id nisl. Duis dui ante, lacinia ut augue sed, facilisis feugiat metus. Nullam metus neque, ultrices ac lobortis et, sagittis in magna. Mauris pellentesque porttitor massa quis laoreet. In convallis blandit blandit. ",
+			
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Quisque dictum, magna non rutrum cursus, felis ex posuere lacus, vitae mattis elit ante ac libero. Sed aliquam, ligula id commodo pulvinar, quam nulla ultricies magna, vel sodales magna velit et metus. Pellentesque vitae varius leo, sed viverra diam. In quis ligula vel elit hendrerit ullamcorper. Cras posuere purus et tristique tristique. Nam at tellus non ligula eleifend sodales ut et felis. Nullam ultricies faucibus magna, vitae scelerisque felis euismod et. Morbi pharetra risus ac magna tempus, at aliquam tortor consectetur. Maecenas magna mi, consequat eget arcu et, pulvinar sollicitudin ipsum.",
+			
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Quisque dictum, magna non rutrum cursus, felis ex posuere lacus, vitae mattis elit ante ac libero. Sed aliquam, ligula id commodo pulvinar, quam nulla ultricies magna, vel sodales magna velit et metus. Pellentesque vitae varius leo, sed viverra diam. In quis ligula vel elit hendrerit ullamcorper. Cras posuere purus et tristique tristique. Nam at tellus non ligula eleifend sodales ut et felis. Nullam ultricies faucibus magna, vitae scelerisque felis euismod et. Morbi pharetra risus ac magna tempus, at aliquam tortor consectetur. Maecenas magna mi, consequat eget arcu et, pulvinar sollicitudin ipsum.",
+			
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Quisque dictum, magna non rutrum cursus, felis ex posuere lacus, vitae mattis elit ante ac libero. Sed aliquam, ligula id commodo pulvinar, quam nulla ultricies magna, vel sodales magna velit et metus. Pellentesque vitae varius leo, sed viverra diam. In quis ligula vel elit hendrerit ullamcorper. Cras posuere purus et tristique tristique. Nam at tellus non ligula eleifend sodales ut et felis. Nullam ultricies faucibus magna, vitae scelerisque felis euismod et. Morbi pharetra risus ac magna tempus, at aliquam tortor consectetur. Maecenas magna mi, consequat eget arcu et, pulvinar sollicitudin ipsum.",
+			
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Pellentesque odio orci, dapibus eget fermentum at, bibendum non nulla. Maecenas pretium, sem iaculis hendrerit molestie, neque enim consectetur ex, sed sagittis lorem leo eget quam. Nunc vestibulum ipsum quis quam tincidunt, vel laoreet ex interdum. Mauris interdum purus nec enim venenatis auctor. Cras eu ante vel metus tincidunt varius vitae vitae erat. Aliquam ac pretium massa, id luctus enim. Praesent efficitur feugiat lorem, sed lacinia risus imperdiet eget. Quisque consectetur lectus sit amet varius porta. Cras et ante vitae diam volutpat mattis vitae sit amet nisl. Proin mollis nunc non eros scelerisque porttitor. Fusce maximus laoreet elit eu iaculis.",
+			
+			"step_trigger" : "manual",
+		},
+		{
+			"side" : "left",
+			"text" : "Wut",
+		}
+	]
+}

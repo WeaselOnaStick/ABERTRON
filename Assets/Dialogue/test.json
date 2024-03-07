@@ -5,7 +5,7 @@
 			"side" : "left",
 			"text" : "Hello? \nAnyone Home?",
 			"step_trigger" : "delay",
-			"delay_after" : 4,
+			"delay_after" : 2,
 		},
 		{
 			"side" : "right",

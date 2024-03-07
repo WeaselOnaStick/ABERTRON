@@ -5,6 +5,8 @@
 [sub_resource type="GDScript" id="GDScript_vdss5"]
 script/source = "extends CanvasLayer
 
+func _ready():
+	visible = false
 
 func _on_return_to_game_pressed():
 	GameManager.game_pause_toggle()

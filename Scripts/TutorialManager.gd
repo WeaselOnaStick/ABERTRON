@@ -31,7 +31,7 @@ func clear_hints():
 	for x in get_children():
 		x.queue_free()
 
-func display_hint(text : String, center := true, autofade := 10.0):
+func display_hint(text : String, autofade := 10.0, center := true,):
 	var new_line := TUTORIAL_LINE.instantiate()
 	add_child(new_line)
 	var rtl := new_line.get_node("RichTextLabel") as RichTextLabel
@@ -41,7 +41,7 @@ func display_hint(text : String, center := true, autofade := 10.0):
 	
 	var _tw_clr := create_tween().tween_property(new_line, "modulate", Color("#ffffff"), 1.0).from(Color("#ffffffba"))
 	var _tw_txt := create_tween().tween_property(rtl, "visible_ratio", 1.0, 2).from(0.0)
-	var _tw_fade := create_tween().tween_property(new_line, "modulate", Color("#ffffff00"), 1.0).set_delay(autofade)
+	var _tw_fade := create_tween().tween_property(new_line, "modulate", Color("#ffffff00"), 1.0).set_delay(1+autofade)
 	
 	await _tw_fade.finished
 	hint_ended.emit()
