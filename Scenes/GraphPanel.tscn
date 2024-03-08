@@ -8,14 +8,21 @@ _data = [Vector2(0, 0), 0.0, 11.1111, 0, 1, Vector2(0.045, 0.5), 11.1111, 0.0, 1
 point_count = 4
 
 [node name="GraphPanel" type="Panel"]
+custom_minimum_size = Vector2(512, 512)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1408.0
+offset_bottom = -568.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_7a4rh")
 
 [node name="Line2D" type="Line2D" parent="."]
+position = Vector2(-16, 152)
+scale = Vector2(0.246615, 0.246615)
 points = PackedVector2Array(329, 796, 644, 798, 913, 750, 1017, 648, 1116, 542, 1255, 562, 1379, 634, 1511, 695, 1594, 772, 1848, 802)
 width = 25.0
 width_curve = SubResource("Curve_asmup")

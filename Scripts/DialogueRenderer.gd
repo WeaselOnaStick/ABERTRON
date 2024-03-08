@@ -2,12 +2,13 @@ extends Control
 
 @export var dialogue_file : JSON
 var dialogue_data
-const SPEECH_BUBBLE_LEFT = preload("res://Scenes/speech_bubble_left.tscn")
-const SPEECH_BUBBLE_RIGHT = preload("res://Scenes/speech_bubble_right.tscn")
-const TYPING_INDICATOR = preload("res://Scenes/typing_indicator.tscn")
+
+var SPEECH_BUBBLE_LEFT = load("res://Scenes/speech_bubble_left.tscn")
+var SPEECH_BUBBLE_RIGHT = load("res://Scenes/speech_bubble_right.tscn")
+var TYPING_INDICATOR = load("res://Scenes/typing_indicator.tscn")
 var typing_bubble : Panel
 
-const END_OF_DIALOGUE = preload("res://Scenes/end_of_dialogue.tscn")
+var END_OF_DIALOGUE = load("res://Scenes/end_of_dialogue.tscn")
 
 @onready var scroll_container := $Panel/ScrollContainer
 @onready var bubble_container := %BubbleContainer
@@ -38,13 +39,13 @@ func _dialog_step():
 	hide_typing_indicator()
 	DebugUI.DebugLog("cur_line_idx %s (out of %s)" % [cur_line_idx,len(dialogue_data["lines"])])
 	
-	if cur_line_idx >= len(dialogue_data["lines"])-1:
+	if cur_line_idx > len(dialogue_data["lines"])-1:
 		return
 	
 	cur_line = dialogue_data["lines"][cur_line_idx]
 	add_bubble(cur_line["side"],cur_line["text"])
 	
-	if cur_line_idx == len(dialogue_data["lines"])-2:
+	if cur_line_idx == len(dialogue_data["lines"])-1:
 		DebugUI.DebugLog("reached end of dialogue")
 		bubble_container.add_child(END_OF_DIALOGUE.instantiate())
 		dialogue_ended.emit()
@@ -62,16 +63,15 @@ func _dialog_step():
 		_dialog_step()
 
 func add_typing_indicator():
-	if typing_bubble != null:
-		typing_bubble.queue_free() 
+	hide_typing_indicator()
 	typing_bubble = TYPING_INDICATOR.instantiate()
 	bubble_container.add_child(typing_bubble)
 	var tw := create_tween()
 	tw.tween_property(typing_bubble,"modulate",Color("ffffff"), 0.15).from(Color("ffffff00"))
 	
 func hide_typing_indicator():
-	if typing_bubble != null:
-		typing_bubble.free()
+	if is_instance_valid(typing_bubble) and typing_bubble != null:
+		typing_bubble.queue_free() 
 
 func add_bubble(side := "left", text := "ERROR"):
 	var new_bubble : SpeechBubble
@@ -83,9 +83,9 @@ func add_bubble(side := "left", text := "ERROR"):
 	bubble_container.add_child(new_bubble)
 	new_bubble.init()
 	new_bubble.rtl.text = text
-	#new_bubble.set_focus_mode(Control.FOCUS_ALL)
-	#new_bubble.grab_focus()
+	await new_bubble.bubble_added
+	call_deferred("scroll_to_end")
+
+func scroll_to_end():
 	var vbar = scroll_container.get_v_scroll_bar() as VScrollBar
-	#DebugUI.DebugLog("Scroll val = %s" % vbar.value)
 	create_tween().tween_property(vbar, "value", vbar.max_value, 0.5)
-	#vbar.value = vbar.max_value

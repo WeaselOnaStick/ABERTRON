@@ -271,6 +271,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
+auto_translate_mode = 2
 material = SubResource("ShaderMaterial_b0sgp")
 layout_mode = 1
 anchors_preset = 15
@@ -278,8 +279,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-auto_translate = false
 localize_numeral_system = false
+auto_translate = false
 
 [editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight"]
 [editable path="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3"]
