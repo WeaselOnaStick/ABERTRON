@@ -18,7 +18,7 @@ anti_aliasing_size = 1.876
 viewport_path = NodePath("BG/LoadingPanel/NoiseLoading/SubViewport")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o0upq"]
-seed = 83396
+seed = 85600
 frequency = 0.1639
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qlj0i"]
@@ -32,7 +32,7 @@ extends Sprite2D
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	((texture as NoiseTexture2D).noise as FastNoiseLite).seed += 1
 "
 

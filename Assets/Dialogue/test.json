@@ -31,7 +31,8 @@
 		},
 		{
 			"side" : "right",
-			"text" : "RIP BOZO LMAO 😂😂👌👌"
+			"text" : "RIP BOZO LMAO 😂😂👌👌",
+			"step_trigger" : "signal"
 		}
 	]
 }

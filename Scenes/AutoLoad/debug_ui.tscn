@@ -12,6 +12,7 @@ offset_right = 522.0
 offset_bottom = 285.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
+current_tab = 0
 
 [node name="Basic Debug" type="Panel" parent="TabContainer"]
 layout_mode = 2
@@ -71,22 +72,28 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "PLACEHOLDER TEXT"
 
+[node name="Cursor" type="HBoxContainer" parent="TabContainer/Basic Debug/VBoxContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/Cursor"]
+auto_translate_mode = 1
+layout_mode = 2
+text = "Cursor"
+
+[node name="Cursor-Text" type="Label" parent="TabContainer/Basic Debug/VBoxContainer/Cursor"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+text = "PLACEHOLDER TEXT"
+
 [node name="DebugText" type="TextEdit" parent="TabContainer/Basic Debug/VBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 28)
 layout_mode = 2
 mouse_filter = 2
 theme_override_font_sizes/font_size = 16
-text = "AAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAAAAAAAA
-AAAAAA"
+text = "C\\Users\\woas\\Downloads\\Xelu_Free_Controller&Key_Prompts\\Xbox Series\\XboxSeriesX_Diagram_Simple.png"
 placeholder_text = "AAAAAA
 AAAAAAAAAAAA
 AAAAAAAAAAAA

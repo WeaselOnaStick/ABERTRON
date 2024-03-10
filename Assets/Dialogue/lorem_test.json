@@ -1,5 +1,5 @@
 {
-	"init_mode" : "manual", 
+	"init_mode" : "auto", 
 	"lines": [
 		{
 			"side" : "left",

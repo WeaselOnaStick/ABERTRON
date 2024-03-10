@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://domlcgkqfxssa"]
+[gd_scene load_steps=12 format=3 uid="uid://domlcgkqfxssa"]
 
 [ext_resource type="FontFile" uid="uid://dkc6s50e4btqd" path="res://Assets/Fonts/Mulish/Mulish-Black.ttf" id="1_hr4ks"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_s2ky1"]
@@ -103,6 +103,33 @@ shader_parameter/hScrollSpeedFactor = 1.0
 shader_parameter/vScrollSpeedFactor = 1.0
 shader_parameter/entropyFactor = 1.0
 shader_parameter/sharpness = 10.0
+
+[sub_resource type="GDScript" id="GDScript_20pit"]
+script/source = "extends HSlider
+
+func _ready() -> void:
+	value = MusicManager._volume
+	value_changed.connect(func (x) : MusicManager.set_volume(x))
+"
+
+[sub_resource type="GDScript" id="GDScript_b7s3d"]
+script/source = "extends CheckBox
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+		button_pressed = true
+	elif DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_WINDOWED:
+		button_pressed = false
+	toggled.connect(_on_fullscreen_checkbox_toggled)
+	
+func _on_fullscreen_checkbox_toggled(toggled_on):
+	if toggled_on:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+"
 
 [sub_resource type="Theme" id="Theme_pujk5"]
 Label/colors/font_color = Color(1, 1, 1, 1)
@@ -214,7 +241,6 @@ theme = ExtResource("2_16j5p")
 text = "MUSIC VOLUME"
 
 [node name="VolumeSlider" type="HSlider" parent="MarginContainer/SettingsButtons/GridContainer"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(409.6, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -222,6 +248,7 @@ size_flags_vertical = 4
 min_value = -50.0
 max_value = 10.0
 step = 0.05
+script = SubResource("GDScript_20pit")
 
 [node name="Label2" type="Label" parent="MarginContainer/SettingsButtons/GridContainer"]
 layout_mode = 2
@@ -236,6 +263,7 @@ size_flags_vertical = 4
 theme = ExtResource("2_16j5p")
 button_pressed = true
 expand_icon = true
+script = SubResource("GDScript_b7s3d")
 
 [node name="Label" type="Label" parent="MarginContainer/SettingsButtons/GridContainer/FullscreenCheckbox"]
 layout_mode = 1
@@ -300,6 +328,4 @@ horizontal_alignment = 1
 [connection signal="pressed" from="MarginContainer/MainMenuButtons/StartGame" to="." method="_on_start_game_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenuButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MarginContainer/MainMenuButtons/Exit" to="." method="_on_exit_pressed"]
-[connection signal="value_changed" from="MarginContainer/SettingsButtons/GridContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]
-[connection signal="toggled" from="MarginContainer/SettingsButtons/GridContainer/FullscreenCheckbox" to="." method="_on_fullscreen_checkbox_toggled"]
 [connection signal="pressed" from="MarginContainer/SettingsButtons/MarginContainer/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]

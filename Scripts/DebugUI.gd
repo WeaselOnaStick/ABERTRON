@@ -14,6 +14,7 @@ func _process(_delta):
 		%"MUSIC-TEXT".text = "%s|%s" % [MusicManager._get_current_player().bank_label,MusicManager._get_current_player().track_name]
 	else:
 		%"MUSIC-TEXT".text = "NO PLAYER"
+	%"Cursor-Text".text = str(Input.get_current_cursor_shape())
 	
 	
 func DebugLog(text):

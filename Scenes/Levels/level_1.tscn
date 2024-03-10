@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciwlw4uy0d0j"]
+
+[ext_resource type="PackedScene" uid="uid://diwwky0b8kuuq" path="res://Scenes/abertron_lab_base.tscn" id="1_rpjim"]
+[ext_resource type="PackedScene" uid="uid://d11bc2bayl27w" path="res://Scenes/player.tscn" id="3_so54j"]
+
+[sub_resource type="GDScript" id="GDScript_abntm"]
+script/source = "extends Node3D
+
+const TEST_DIALOGUE : JSON = preload(\"res://Assets/Dialogue/test.json\")
+
+func _ready() -> void:
+	GameManager.call_deferred(\"level1_start\")
+	($abertron_lab/COMMS as CommsPanel).dialogue_renderer.init(TEST_DIALOGUE)
+"
+
+[node name="Level1" type="Node3D"]
+script = SubResource("GDScript_abntm")
+
+[node name="abertron_lab" parent="." instance=ExtResource("1_rpjim")]
+
+[node name="Player" parent="." instance=ExtResource("3_so54j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10575, 0.894183, 16.8177)
+
+[editable path="abertron_lab"]

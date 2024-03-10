@@ -15,7 +15,11 @@ const ICON_CROSSHAIR = "res://Assets/Sprites/KenneyCrosshairs/White Retina/cross
 const E_KEY_LIGHT = "res://Assets/Sprites/Xelu Icons/KeyboardMouse/Light/E_Key_Light.png"
 const ESC_KEY_LIGHT = "res://Assets/Sprites/Xelu Icons/KeyboardMouse/Light/Esc_Key_Light.png"
 
-var HINT_BASIC_MOVEMENT := "MOVE AROUND WITH [img]%s[/img] AND [img]%s[/img]\n PRESS [img]%s[/img] TO ENABLE [i]PRECISION MODE[/i]" % [ICON_WASD_LIGHT, ICON_MOUSE, ICON_SPACE_KEY_LIGHT]
+
+# lines to say.
+# played by Game Manager directly, since some hints are tied to game events
+
+var HINT_BASIC_MOVEMENT := "MOVE AROUND WITH [img]%s[/img] AND [img]%s[/img]\n PRESS [img]%s[/img] TO ENABLE [i]MOUSE MODE[/i][img]%s[/img]" % [ICON_WASD_LIGHT, ICON_MOUSE, ICON_SPACE_KEY_LIGHT,ICON_MOUSE]
 var HINT_INTERACTIONS := "INTERACT WITH OBJECTS BY \nLOOKING AT THEM [img]%s[/img] AND PRESSING [img]%s[/img]\n[font_size=26](YOU CAN ONLY INTERACT WITH OBJECTS WHEN THE [color=#ac2020]CROSSHAIR TURNS RED[/color])[/font_size]" % [ICON_CROSSHAIR, E_KEY_LIGHT]
 var HINT_PAUSE := "PRESS [img]%s[/img] TO PAUSE THE GAME" % ESC_KEY_LIGHT
 
@@ -37,6 +41,7 @@ func display_hint(text : String, autofade := 10.0, center := true,):
 	var rtl := new_line.get_node("RichTextLabel") as RichTextLabel
 	rtl.text = "[center]" if center else ""
 	rtl.text += text
+	#default img scale
 	rtl.text = rtl.text.replace("[img]", "[img=0x48]")
 	
 	var _tw_clr := create_tween().tween_property(new_line, "modulate", Color("#ffffff"), 1.0).from(Color("#ffffffba"))

@@ -1,11 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://itx74ssln20l"]
+[gd_scene load_steps=24 format=3 uid="uid://itx74ssln20l"]
 
 [ext_resource type="PackedScene" uid="uid://d11bc2bayl27w" path="res://Scenes/player.tscn" id="1_4kg6c"]
 [ext_resource type="ArrayMesh" uid="uid://d08l38ycxdd7b" path="res://Assets/SuzanneSubdiv.obj" id="2_6neqt"]
-[ext_resource type="Script" path="res://Scripts/CommsPanel.gd" id="3_qwky8"]
-[ext_resource type="PackedScene" uid="uid://2cfugne7ngwi" path="res://Scenes/DialogueRenderer.tscn" id="4_c6buk"]
+[ext_resource type="PackedScene" uid="uid://c361pb26hkcmx" path="res://Scenes/COMMS_PANEL.tscn" id="3_ggen0"]
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_bank.gd" id="5_dyc6f"]
-[ext_resource type="PackedScene" uid="uid://ghaslbcqsg6b" path="res://Scenes/GraphPanel.tscn" id="6_kuj0n"]
+[ext_resource type="Material" path="res://Assets/Materials/test/wave.tres" id="5_hronj"]
 
 [sub_resource type="GDScript" id="GDScript_ye1uf"]
 script/source = "extends Node3D
@@ -14,6 +13,8 @@ script/source = "extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameManager.level1_start()
+	const TEST = preload(\"res://Assets/Dialogue/test.json\")
+	($COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer as DialogueRenderer).init(TEST)
 "
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_86eyj"]
@@ -86,17 +87,12 @@ diffuse_mode = 1
 ao_enabled = true
 ao_light_affect = 0.75
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_slukk"]
-viewport_path = NodePath("COMMS/CSGBox3D/Sprite3D/SubViewport")
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mojov"]
-points = PackedVector3Array(-0.443, -0.24, -0.698, 0.451429, 0.0109106, 0.698276, 0.451, -0.24, 0.698, 0.451429, 0.0109106, -0.698276, -0.443413, 0.0109106, 0.698276, -0.443, -0.24, 0.698, 0.451, -0.24, -0.698, -0.443413, 0.0109106, -0.698276)
-
 [sub_resource type="BoxMesh" id="BoxMesh_sn8vk"]
 size = Vector3(0.715, 0.465, 0.44)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_x4jkl"]
-viewport_path = NodePath("WaveDisplay/Sprite3D/SubViewport")
+[sub_resource type="PlaneMesh" id="PlaneMesh_diybk"]
+size = Vector2(0.676, 0.401)
+orientation = 2
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_toxfg"]
 points = PackedVector3Array(0.3575, 0.2325, 0.22, 0.3575, 0.2325, -0.22, -0.3575, 0.2325, 0.22, 0.3575, -0.2325, 0.22, 0.3575, -0.2325, -0.22, -0.3575, 0.2325, -0.22, -0.3575, -0.2325, 0.22, -0.3575, -0.2325, -0.22)
@@ -168,7 +164,7 @@ script = SubResource("GDScript_ye1uf")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mnow8")
 
-[node name="SoftBody3D" type="SoftBody3D" parent="."]
+[node name="ahhhh wire" type="SoftBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745236, 1.57975, 1.64876)
 material_override = SubResource("StandardMaterial3D_0kegg")
 mesh = SubResource("CylinderMesh_s3vti")
@@ -226,39 +222,8 @@ transform = Transform3D(1, 0, 0, 0, 0.809468, 0.587164, 0, -0.587164, 0.809468, 
 material_override = SubResource("StandardMaterial3D_7dv25")
 mesh = ExtResource("2_6neqt")
 
-[node name="COMMS" type="Node3D" parent="."]
-transform = Transform3D(0.858352, 0, -0.513062, 0, 1, 0, 0.513062, 0, 0.858352, 2.49386, 0.247266, -1.07879)
-script = ExtResource("3_qwky8")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="COMMS"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09568, -0.00316358)
-size = Vector3(1.505, 2.689, 0.19)
-
-[node name="Sprite3D" type="Sprite3D" parent="COMMS/CSGBox3D"]
-transform = Transform3D(1, 0, 2.76566e-08, 0, 1, 0, -2.76566e-08, 0, 1, 3.56675e-07, 0.111725, 0.111112)
-pixel_size = 0.0012
-texture = SubResource("ViewportTexture_slukk")
-region_rect = Rect2(0, 0, 1024, 1023)
-
-[node name="SubViewport" type="SubViewport" parent="COMMS/CSGBox3D/Sprite3D"]
-disable_3d = true
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1092, 1930)
-render_target_update_mode = 4
-
-[node name="DialogueRenderer" parent="COMMS/CSGBox3D/Sprite3D/SubViewport" instance=ExtResource("4_c6buk")]
-offset_right = 0.0
-offset_bottom = 0.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="InteractionArea" type="Area3D" parent="COMMS"]
-transform = Transform3D(0.858351, 0, 0.513062, 0, 1, 0, -0.513062, 0, 0.858351, -1.58712, -0.247266, 2.20548)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="COMMS/InteractionArea"]
-transform = Transform3D(1.2792, -0.764614, -0.00176102, -2.22073e-08, 0.00343261, -1.4903, 0.764616, 1.2792, 0.00294635, 2.4129, 1.34925, -0.943347)
-shape = SubResource("ConvexPolygonShape3D_mojov")
+[node name="COMMS" parent="." instance=ExtResource("3_ggen0")]
+transform = Transform3D(0.922046, 0, -0.387081, 0, 1, 0, 0.387081, 0, 0.922046, 1.72531, 0.497079, -0.491489)
 
 [node name="MusicBank" type="Node" parent="."]
 script = ExtResource("5_dyc6f")
@@ -269,19 +234,10 @@ transform = Transform3D(0.722255, 0, -0.691627, 0, 1, 0, 0.691627, 0, 0.722255, 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WaveDisplay"]
 mesh = SubResource("BoxMesh_sn8vk")
 
-[node name="Sprite3D" type="Sprite3D" parent="WaveDisplay"]
-transform = Transform3D(0.182932, 0, 0, 0, 0.182932, 0, 0, 0, 0.182932, 0, -0.0075658, 0.227367)
-pixel_size = 0.005
-texture = SubResource("ViewportTexture_x4jkl")
-
-[node name="SubViewport" type="SubViewport" parent="WaveDisplay/Sprite3D"]
-disable_3d = true
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Panel" parent="WaveDisplay/Sprite3D/SubViewport" instance=ExtResource("6_kuj0n")]
-offset_right = 0.0
-offset_bottom = 0.0
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="WaveDisplay"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.45058e-09, 0, 0.222409)
+material_override = ExtResource("5_hronj")
+mesh = SubResource("PlaneMesh_diybk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WaveDisplay"]
 shape = SubResource("ConvexPolygonShape3D_toxfg")

@@ -25,7 +25,7 @@ func fix_h():
 	custom_minimum_size.y = 128 + 66 * (rtl.get_content_height()/68)
 	
 
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		call_deferred("fix_h")
 		#custom_minimum_size.y = 128 + 64 * (rtl.get_content_height()/67-1)

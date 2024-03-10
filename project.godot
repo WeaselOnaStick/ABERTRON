@@ -57,6 +57,10 @@ folder_colors={
 "res://Scripts/": "blue"
 }
 
+[global_group]
+
+Interactable="Areas that player can interact with manually"
+
 [input]
 
 exit={

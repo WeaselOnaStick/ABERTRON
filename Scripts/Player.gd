@@ -3,7 +3,9 @@ extends CharacterBody3D
 @export var SPEED := 5.0
 @export var mouse_sensitivity := 0.002
 @onready var cam = $Camera3D
-@onready var interaction_ray = %InteractionRay
+@onready var interaction_ray : RayCast3D = %InteractionRay
+@onready var holding_position: Marker3D = %HoldingPosition
+
 
 var can_interact = false
 
@@ -30,7 +32,7 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-	if interaction_ray.is_colliding() and interaction_ray.get_collider().get_parent().has_method("interact"):
+	if interaction_ray.is_colliding() and interaction_ray.get_collider().is_in_group("Interactable"):
 		FPS_HUD.toggle_crosshair_highlight(true)
 	else:
 		FPS_HUD.toggle_crosshair_highlight(false)
