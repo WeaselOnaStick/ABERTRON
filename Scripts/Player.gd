@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @export var SPEED := 5.0
 @export var mouse_sensitivity := 0.002
+@export_range(0, 90, 0.001, "radians_as_degrees") var max_pitch := deg_to_rad(80)
+
 @onready var cam = $Camera3D
 @onready var interaction_ray : RayCast3D = %InteractionRay
 @onready var holding_position: Marker3D = %HoldingPosition
@@ -50,7 +52,13 @@ func _input(event):
 		event = event as InputEventMouseMotion
 		
 		rotate_y(-event.relative.x * mouse_sensitivity)
-		cam.rotate_x(-event.relative.y * mouse_sensitivity)
+		
+		if   cam.rotation.x < max_pitch and event.relative.y < 0:
+			cam.rotate_x(-event.relative.y * mouse_sensitivity)
+		elif cam.rotation.x > -max_pitch and event.relative.y > 0:
+			cam.rotate_x(-event.relative.y * mouse_sensitivity)
+		
+		
 		interaction_ray.rotation = cam.rotation
 	
 	if event.is_action_pressed("interact"):
