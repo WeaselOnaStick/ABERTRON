@@ -42,3 +42,10 @@ dialogue_file = null
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.00399721, 1.16934, 0.184632)
 shape = SubResource("BoxShape3D_g2ltc")
+
+[node name="PanelLight" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, -5.96046e-08, 0, 5.96046e-08, -1, 0, 1.243, -0.285)
+spot_range = 4.56376
+spot_angle = 72.8399
+
+[connection signal="dialogue_stepped" from="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer" to="." method="lights_toggle" flags=6 binds= [true]]

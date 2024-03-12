@@ -1,24 +1,152 @@
-[gd_scene load_steps=4 format=3 uid="uid://ciwlw4uy0d0j"]
+[gd_scene load_steps=17 format=3 uid="uid://ciwlw4uy0d0j"]
 
+[ext_resource type="Script" path="res://Scenes/Levels/level_1.gd" id="1_jo0h1"]
 [ext_resource type="PackedScene" uid="uid://diwwky0b8kuuq" path="res://Scenes/abertron_lab_base.tscn" id="1_rpjim"]
 [ext_resource type="PackedScene" uid="uid://d11bc2bayl27w" path="res://Scenes/player.tscn" id="3_so54j"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_bank.gd" id="4_yxi67"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_event_resource.gd" id="5_i64b4"]
+[ext_resource type="AudioStream" uid="uid://c8q432arawvkc" path="res://Assets/Audio/lights_on.mp3" id="6_6e0o7"]
 
-[sub_resource type="GDScript" id="GDScript_abntm"]
-script/source = "extends Node3D
+[sub_resource type="ViewportTexture" id="ViewportTexture_awgps"]
+viewport_path = NodePath("CSGBox3D/Sprite3D/SubViewport")
 
-const TEST_DIALOGUE : JSON = preload(\"res://Assets/Dialogue/test.json\")
+[sub_resource type="SystemFont" id="SystemFont_fdvv2"]
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+msdf_size = 64
+oversampling = 2.3
 
-func _ready() -> void:
-	GameManager.call_deferred(\"level1_start\")
-	($abertron_lab/COMMS as CommsPanel).dialogue_renderer.init(TEST_DIALOGUE)
-"
+[sub_resource type="Theme" id="Theme_pdhrm"]
+resource_local_to_scene = true
+default_font_size = 0
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
+
+[sub_resource type="Theme" id="Theme_kbyhy"]
+resource_local_to_scene = true
+default_font_size = 0
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
+
+[sub_resource type="Gradient" id="Gradient_ictay"]
+offsets = PackedFloat32Array(0, 0.726891, 0.878151, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.181336, 0.181336, 0.181336, 1, 0.689076, 0.689076, 0.689076, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gj881"]
+gradient = SubResource("Gradient_ictay")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_n5bxe"]
+panorama = SubResource("GradientTexture2D_gj881")
+
+[sub_resource type="Sky" id="Sky_wvh6c"]
+sky_material = SubResource("PanoramaSkyMaterial_n5bxe")
+
+[sub_resource type="Environment" id="Environment_acty1"]
+resource_local_to_scene = true
+background_mode = 2
+sky = SubResource("Sky_wvh6c")
+ambient_light_source = 2
+ambient_light_color = Color(0.111197, 0.111197, 0.111197, 1)
+ambient_light_energy = 0.28
+ssao_enabled = true
+ssao_radius = 0.74
+ssao_intensity = 3.05
+ssao_power = 0.891906
+
+[sub_resource type="Resource" id="Resource_thpbs"]
+script = ExtResource("5_i64b4")
+name = "lights_on"
+bus = "SFX"
+volume = 0.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("6_6e0o7")])
 
 [node name="Level1" type="Node3D"]
-script = SubResource("GDScript_abntm")
+script = ExtResource("1_jo0h1")
 
 [node name="abertron_lab" parent="." instance=ExtResource("1_rpjim")]
+
+[node name="Sprite3D" parent="abertron_lab/COMMS/CSGBox3D" index="0"]
+texture = SubResource("ViewportTexture_awgps")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
+theme = SubResource("Theme_pdhrm")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9/MarginContainer" index="0"]
+theme = SubResource("Theme_kbyhy")
+
+[node name="Lights" parent="abertron_lab" index="3"]
+visible = true
+
+[node name="lab environment" parent="abertron_lab" index="4"]
+environment = SubResource("Environment_acty1")
 
 [node name="Player" parent="." instance=ExtResource("3_so54j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10575, 0.894183, 16.8177)
 
+[node name="SoundBank" type="Node" parent="."]
+script = ExtResource("4_yxi67")
+label = "Environment"
+bus = "SFX"
+events = Array[ExtResource("5_i64b4")]([SubResource("Resource_thpbs")])
+
+[node name="SubjectSpawnPoint" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.990802, -0.134964, 0.00977853, 0.135318, 0.988212, -0.0715987, -9.31323e-10, 0.0722634, 0.997386, 0, 3.48944, 0)
+
 [editable path="abertron_lab"]
+[editable path="abertron_lab/COMMS"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8"]
+[editable path="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9"]
+[editable path="abertron_lab/AbertronLab"]

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="2_xtopt"]
 
 [node name="SpeechBubbleLeft" type="NinePatchRect"]
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 128)
 offset_right = 398.0
 offset_bottom = 128.0
 size_flags_vertical = 4
@@ -35,5 +35,6 @@ theme_override_constants/margin_bottom = 6
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_klif3")
+bbcode_enabled = true
 text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
 scroll_active = false

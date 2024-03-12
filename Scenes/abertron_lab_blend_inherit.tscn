@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://btwpmli4ke6ae"]
+
+[ext_resource type="PackedScene" uid="uid://xar8qslidywt" path="res://Assets/Models/AbertronLab.blend" id="1_k5r5y"]
+
+[node name="AbertronLab" instance=ExtResource("1_k5r5y")]
+
+[node name="CollisionShape3D" parent="collision " index="0"]
+visible = false

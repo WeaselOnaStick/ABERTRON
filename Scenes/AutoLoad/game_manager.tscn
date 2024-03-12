@@ -1,37 +1,45 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu11u7li3olu4"]
+[gd_scene load_steps=13 format=3 uid="uid://bu11u7li3olu4"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_8dkb7"]
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_bank.gd" id="2_ub0b1"]
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_track_resource.gd" id="3_8ihtq"]
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_stem_resource.gd" id="4_aoef4"]
-[ext_resource type="AudioStream" uid="uid://dhhi6h75fh7an" path="res://ProductionAssets/AmbientScifiSlop/AmbientScifiSlop.wav" id="5_nl5le"]
-[ext_resource type="AudioStream" uid="uid://ckwsaq77m6os3" path="res://ProductionAssets/AmbientScifiSlop/AMBIERTRON/AMBIERTRON_WIP.mp3" id="6_bx26o"]
+[ext_resource type="AudioStream" uid="uid://pp00np8tgl7v" path="res://Assets/Music/AmbientScifiSlop.mp3" id="5_u11j2"]
+[ext_resource type="AudioStream" uid="uid://xjsltm1vbd8c" path="res://Assets/Music/AMBIERTRON_WIP_HUM.mp3" id="6_h55yv"]
+[ext_resource type="AudioStream" uid="uid://chh1l5na7j6q" path="res://Assets/Music/AMBIERTRON_WIP_SYNTH.mp3" id="7_7py1q"]
 
 [sub_resource type="Resource" id="Resource_j0a0i"]
 script = ExtResource("4_aoef4")
 name = "0"
 enabled = true
 volume = 3.4
-stream = ExtResource("5_nl5le")
+stream = ExtResource("5_u11j2")
 
 [sub_resource type="Resource" id="Resource_lla6n"]
 script = ExtResource("3_8ihtq")
 name = "MainMenu"
-bus = ""
+bus = "Music"
 stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_j0a0i")])
 
-[sub_resource type="Resource" id="Resource_qehb2"]
+[sub_resource type="Resource" id="Resource_8oapc"]
 script = ExtResource("4_aoef4")
-name = ""
+name = "hum"
 enabled = true
-volume = 6.0
-stream = ExtResource("6_bx26o")
+volume = 0.0
+stream = ExtResource("6_h55yv")
+
+[sub_resource type="Resource" id="Resource_3ksss"]
+script = ExtResource("4_aoef4")
+name = "synth"
+enabled = false
+volume = 0.0
+stream = ExtResource("7_7py1q")
 
 [sub_resource type="Resource" id="Resource_fu7w6"]
 script = ExtResource("3_8ihtq")
 name = "Ambiertron"
-bus = ""
-stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_qehb2")])
+bus = "Music"
+stems = Array[ExtResource("4_aoef4")]([SubResource("Resource_8oapc"), SubResource("Resource_3ksss")])
 
 [node name="GameManager" type="Node"]
 process_mode = 3
@@ -40,4 +48,5 @@ script = ExtResource("1_8dkb7")
 [node name="MusicBank" type="Node" parent="."]
 script = ExtResource("2_ub0b1")
 label = "Global"
+bus = "Music"
 tracks = Array[ExtResource("3_8ihtq")]([SubResource("Resource_lla6n"), SubResource("Resource_fu7w6")])

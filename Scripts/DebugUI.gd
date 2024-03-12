@@ -2,9 +2,20 @@ extends CanvasLayer
 
 @onready var debug_text := %DebugText
 
+@onready var lights_on: Button = $TabContainer/Buttons/Buttons/LightsOn
+@onready var lights_off: Button = $TabContainer/Buttons/Buttons/LightsOff
+
 func _ready():
 	debug_text.text = ""
 	debug_text.placeholder_text = ""
+	
+	lights_on.pressed.connect(func ():
+		(GameManager.cur_scene as level1).set_lights_power(true)
+		)
+		
+	lights_off.pressed.connect(func ():
+		(GameManager.cur_scene as level1).set_lights_power(false)
+		)
 
 func _process(_delta):
 	%"FPS-TEXT".text = str(Engine.get_frames_per_second())
