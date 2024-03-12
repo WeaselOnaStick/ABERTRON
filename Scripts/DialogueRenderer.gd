@@ -97,6 +97,14 @@ func hide_typing_indicator():
 		typing_bubble.queue_free() 
 
 func add_bubble(side := "left", text := "ERROR"):
+	if text == "":
+		return
+	if text.contains("ъ"):
+		if OS.has_environment("USERNAME"):
+			text = text.replace("ъ", OS.get_environment("USERNAME"))
+		else:
+			text = text.replace("ъ", "<USERNAME>")
+	
 	var new_bubble : SpeechBubble
 	if side == "left":
 		new_bubble = SPEECH_BUBBLE_LEFT.instantiate()
