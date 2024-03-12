@@ -1,10 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://domlcgkqfxssa"]
+[gd_scene load_steps=11 format=3 uid="uid://domlcgkqfxssa"]
 
 [ext_resource type="FontFile" uid="uid://dkc6s50e4btqd" path="res://Assets/Fonts/Mulish/Mulish-Black.ttf" id="1_hr4ks"]
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_s2ky1"]
 [ext_resource type="Theme" uid="uid://b23iwjsa8qidx" path="res://Assets/default_UI_theme.tres" id="2_16j5p"]
 [ext_resource type="FontFile" uid="uid://cpb5v2tlbbc80" path="res://Assets/Fonts/poppins/Poppins-ExtraBold.ttf" id="3_4uony"]
-[ext_resource type="FontFile" uid="uid://1j2o4rx4vxgu" path="res://Assets/Fonts/1408_TheEnd.ttf" id="4_t2cgu"]
+[ext_resource type="Script" path="res://Assets/Sprites/VolumeSlider.gd" id="4_gbj5q"]
 
 [sub_resource type="Shader" id="Shader_3uyu4"]
 code = "// Original by @ENDESGA at https://www.shadertoy.com/view/dlKyWw
@@ -103,14 +103,6 @@ shader_parameter/hScrollSpeedFactor = 1.0
 shader_parameter/vScrollSpeedFactor = 1.0
 shader_parameter/entropyFactor = 1.0
 shader_parameter/sharpness = 10.0
-
-[sub_resource type="GDScript" id="GDScript_20pit"]
-script/source = "extends HSlider
-
-func _ready() -> void:
-	value = MusicManager._volume
-	value_changed.connect(func (x) : MusicManager.set_volume(x))
-"
 
 [sub_resource type="GDScript" id="GDScript_b7s3d"]
 script/source = "extends CheckBox
@@ -227,7 +219,7 @@ text = "???"
 [node name="SettingsButtons" type="VBoxContainer" parent="MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_constants/separation = 256
+theme_override_constants/separation = 176
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/SettingsButtons"]
 layout_mode = 2
@@ -240,7 +232,7 @@ layout_mode = 2
 theme = ExtResource("2_16j5p")
 text = "MUSIC VOLUME"
 
-[node name="VolumeSlider" type="HSlider" parent="MarginContainer/SettingsButtons/GridContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="MarginContainer/SettingsButtons/GridContainer"]
 custom_minimum_size = Vector2(409.6, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -248,7 +240,26 @@ size_flags_vertical = 4
 min_value = -50.0
 max_value = 10.0
 step = 0.05
-script = SubResource("GDScript_20pit")
+script = ExtResource("4_gbj5q")
+bus_name = &"Music"
+
+[node name="Label3" type="Label" parent="MarginContainer/SettingsButtons/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme = ExtResource("2_16j5p")
+text = "SFX VOLUME"
+
+[node name="sfxVolumeSlider" type="HSlider" parent="MarginContainer/SettingsButtons/GridContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(409.6, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = -50.0
+max_value = 10.0
+step = 0.05
+script = ExtResource("4_gbj5q")
+bus_name = &"SFX"
 
 [node name="Label2" type="Label" parent="MarginContainer/SettingsButtons/GridContainer"]
 layout_mode = 2
@@ -265,27 +276,6 @@ button_pressed = true
 expand_icon = true
 script = SubResource("GDScript_b7s3d")
 
-[node name="Label" type="Label" parent="MarginContainer/SettingsButtons/GridContainer/FullscreenCheckbox"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.157
-anchor_top = 0.39
-anchor_right = -0.157
-anchor_bottom = 0.39
-offset_left = -156.208
-offset_top = 4.16
-offset_right = 9.792
-offset_bottom = 39.16
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.085615
-theme_override_colors/font_color = Color(0.333333, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_t2cgu")
-theme_override_font_sizes/font_size = 17
-text = "Abandon all hope,
-   ye who enter here ☠️"
-horizontal_alignment = 1
-
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/SettingsButtons"]
 layout_mode = 2
 size_flags_vertical = 8
@@ -296,7 +286,7 @@ theme_override_constants/margin_right = 150
 [node name="BackToMainMenu" type="Button" parent="MarginContainer/SettingsButtons/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("2_16j5p")
-text = "MAIN MENU"
+text = "BACK TO MAIN MENU"
 
 [node name="GameTitle" type="Label" parent="."]
 anchors_preset = 5

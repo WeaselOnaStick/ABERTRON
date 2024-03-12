@@ -1,29 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlhhvm2swb3ho"]
 
 [ext_resource type="Theme" uid="uid://b23iwjsa8qidx" path="res://Assets/default_UI_theme.tres" id="1_nrtsm"]
-[ext_resource type="FontFile" uid="uid://1j2o4rx4vxgu" path="res://Assets/Fonts/1408_TheEnd.ttf" id="2_eyyiv"]
-
-[sub_resource type="GDScript" id="GDScript_vdss5"]
-script/source = "extends CanvasLayer
-
-func _ready():
-	visible = false
-
-func _on_return_to_game_pressed():
-	GameManager.game_pause_toggle()
-
-
-func _on_quit_to_menu_pressed():
-	GameManager.load_scene(GameManager.main_menu_scene_path)
-"
-
-[sub_resource type="GDScript" id="GDScript_0no6u"]
-script/source = "extends HSlider
-
-func _ready() -> void:
-	value = MusicManager._volume
-	value_changed.connect(func (x) : MusicManager.set_volume(x))
-"
+[ext_resource type="Script" path="res://Assets/Sprites/VolumeSlider.gd" id="2_hqjcc"]
 
 [sub_resource type="GDScript" id="GDScript_jotin"]
 script/source = "extends CheckBox
@@ -44,9 +22,25 @@ func _on_fullscreen_checkbox_toggled(toggled_on):
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 "
 
+[sub_resource type="GDScript" id="GDScript_gjqqo"]
+script/source = "extends Button
+
+
+func _ready() -> void:	
+	GameManager.game_pause_toggle()
+"
+
+[sub_resource type="GDScript" id="GDScript_jpm3n"]
+script/source = "extends Button
+
+
+func _ready() -> void:
+	pressed.connect(GameManager.load_scene.bind(GameManager.main_menu_scene_path))
+"
+
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 2
-script = SubResource("GDScript_vdss5")
+visible = false
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 8
@@ -70,11 +64,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_nrtsm")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("1_nrtsm")
-theme_override_constants/separation = 15
+theme_override_constants/separation = 3
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -86,8 +82,8 @@ horizontal_alignment = 1
 auto_translate_mode = 1
 layout_mode = 2
 size_flags_horizontal = 5
-theme_override_constants/h_separation = 81
-theme_override_constants/v_separation = 16
+theme_override_constants/h_separation = 63
+theme_override_constants/v_separation = 3
 columns = 2
 
 [node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
@@ -97,7 +93,24 @@ theme = ExtResource("1_nrtsm")
 theme_override_font_sizes/font_size = 24
 text = "MUSIC VOLUME"
 
-[node name="VolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+[node name="MusicVolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+auto_translate_mode = 1
+custom_minimum_size = Vector2(409.6, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_hqjcc")
+bus_name = &"Music"
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+theme = ExtResource("1_nrtsm")
+theme_override_font_sizes/font_size = 24
+text = "SFX VOLUME"
+
+[node name="sfxVolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
 auto_translate_mode = 1
 custom_minimum_size = Vector2(409.6, 0)
 layout_mode = 2
@@ -105,7 +118,8 @@ size_flags_vertical = 4
 min_value = -50.0
 max_value = 10.0
 step = 0.05
-script = SubResource("GDScript_0no6u")
+script = ExtResource("2_hqjcc")
+bus_name = &"SFX"
 
 [node name="Label2" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer"]
 auto_translate_mode = 1
@@ -125,39 +139,16 @@ button_pressed = true
 expand_icon = true
 script = SubResource("GDScript_jotin")
 
-[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/GridContainer/FullscreenCheckbox"]
-auto_translate_mode = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.157
-anchor_top = 0.39
-anchor_right = -0.157
-anchor_bottom = 0.39
-offset_left = -156.208
-offset_top = 4.16
-offset_right = 9.792
-offset_bottom = 39.16
-grow_horizontal = 2
-grow_vertical = 2
-rotation = -0.085615
-theme_override_colors/font_color = Color(0.694118, 0, 0, 0.313726)
-theme_override_fonts/font = ExtResource("2_eyyiv")
-theme_override_font_sizes/font_size = 17
-text = "Abandon all hope,
-   ye who enter here ☠️"
-horizontal_alignment = 1
-
 [node name="ReturnToGame" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_nrtsm")
 text = "RETURN TO GAME"
+script = SubResource("GDScript_gjqqo")
 
 [node name="QuitToMenu" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("1_nrtsm")
 text = "QUIT TO MENU"
-
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ReturnToGame" to="." method="_on_return_to_game_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/QuitToMenu" to="." method="_on_quit_to_menu_pressed"]
+script = SubResource("GDScript_jpm3n")

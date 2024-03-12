@@ -7,6 +7,8 @@ extends CanvasLayer
 func _ready():
 	main.visible = true
 	settings.visible = false
+	#await MusicManager.loaded
+	MusicManager.play("Global","MainMenu")
 
 func _on_start_game_pressed():
 	GameManager.load_scene("res://Scenes/Levels/level_1.tscn")
