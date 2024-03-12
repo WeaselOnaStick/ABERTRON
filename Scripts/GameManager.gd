@@ -36,13 +36,11 @@ func load_scene(scene_path : StringName, free_current := true):
 	CURRENTLY_LOADING_SCENE = scene_path
 	if CURRENTLY_LOADING_SCENE == main_menu_scene_path:
 		game_state = MAIN_MENU
-		game_pause_toggle()
+		#game_pause_toggle()
 		PauseMenu.visible = false
 		TutorialGUI.visible = false
 		FPS_HUD.visible = false
 		TutorialGUI.clear_hints()
-		await MusicManager.updated
-		MusicManager.play("Global","MainMenu")
 	ResourceLoader.load_threaded_request(CURRENTLY_LOADING_SCENE)
 	cur_loading_screen = LOADING_SCREEN.instantiate()
 	add_child(cur_loading_screen)
@@ -59,20 +57,18 @@ func level1_start():
 	get_tree().paused = false
 	can_player_interact_override.emit(false)
 	TutorialGUI.clear_hints()
-	MusicManager.play("Global","Ambiertron")
-	#MusicManager.updated.connect(MusicManager.play.bind("Global","Ambiertron"), CONNECT_ONE_SHOT)
 	FPS_HUD.toggle_crosshair_visible(false)
 	
 	TutorialGUI.display_hint(TutorialGUI.HINT_BASIC_MOVEMENT,6)
 	await TutorialGUI.hint_ended
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 	TutorialGUI.display_hint(TutorialGUI.HINT_INTERACTIONS,5)
 	FPS_HUD.toggle_crosshair_visible(true)
 	can_player_interact_override.emit(true)
+	(cur_scene as level1).comms_signal()
 	await TutorialGUI.hint_ended
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 	TutorialGUI.display_hint(TutorialGUI.HINT_PAUSE,3)
-
 
 
 func _input(event):

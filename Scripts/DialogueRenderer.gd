@@ -82,7 +82,7 @@ func _dialog_step():
 	if cur_line.get("step_trigger") == "delay":
 		state = states.WAITING_DELAY
 		add_typing_indicator()
-		await get_tree().create_timer(cur_line["delay_after"]).timeout
+		await get_tree().create_timer(cur_line["delay_after"], false).timeout
 		_dialog_step()
 
 func add_typing_indicator():
