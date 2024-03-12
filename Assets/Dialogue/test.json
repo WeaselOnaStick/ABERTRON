@@ -9,29 +9,42 @@
 		},
 		{
 			"side" : "right",
-			"text" : "WELCOME UNIT 009F",
+			"text" : "WELCOME UNIT 737",
 			"step_trigger" : "delay",
 			"delay_after" : 2,
 		},
 		{
 			"side" : "right",
-			"text" : "YOU ARE IN ABERTRON.\nYOU ARE TO INSPECT.\nIS THAT CLEAR?",
+			"text" : "DON'T FORGET TO ADD ACTUAL TEXT HERE LATER",
 			"step_trigger" : "manual",
 		},
 		{
 			"side" : "left",
-			"text" : "No..?",
+			"text" : "...",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nisl eros, porta a dictum in, pulvinar id nisl. Duis dui ante, lacinia ut augue sed, facilisis feugiat metus. Nullam metus neque, ultrices ac lobortis et, sagittis in magna. Mauris pellentesque porttitor massa quis laoreet. In convallis blandit blandit. ",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Quisque dictum, magna non rutrum cursus, felis ex posuere lacus, vitae mattis elit ante ac libero. Sed aliquam, ligula id commodo pulvinar, quam nulla ultricies magna, vel sodales magna velit et metus. Pellentesque vitae varius leo, sed viverra diam. In quis ligula vel elit hendrerit ullamcorper. Cras posuere purus et tristique tristique. Nam at tellus non ligula eleifend sodales ut et felis. Nullam ultricies faucibus magna, vitae scelerisque felis euismod et. Morbi pharetra risus ac magna tempus, at aliquam tortor consectetur. Maecenas magna mi, consequat eget arcu et, pulvinar sollicitudin ipsum.",
+			
 			"step_trigger" : "manual",
 		},
 		{
 			"side" : "left",
-			"text" : "Not really?",
+			"text" : "What?",
 			"step_trigger" : "delay",
 			"delay_after" : 4,
 		},
 		{
 			"side" : "right",
-			"text" : "RIP BOZO LMAO 😂😂👌👌",
+			"text" : "[img=0x256]res://Assets/Sprites/lol.png[/img]\n\nI am mentally insane",
 			"step_trigger" : "signal"
 		}
 	]

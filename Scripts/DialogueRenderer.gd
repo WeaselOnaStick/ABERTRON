@@ -14,6 +14,8 @@ const END_OF_DIALOGUE = preload("res://Scenes/end_of_dialogue.tscn")
 @onready var bubble_container := %BubbleContainer
 
 signal dialogue_ended
+signal dialogue_stepped
+signal dialogue_signal(value : int)
 
 var cur_line_idx = 0
 var cur_line : Dictionary
@@ -57,6 +59,7 @@ func init(input_dialogue_file : JSON):
 
 func _dialog_step():
 	hide_typing_indicator()
+	dialogue_stepped.emit()
 	DebugUI.DebugLog("cur_line_idx %s (out of %s)" % [cur_line_idx,len(_dialogue_data["lines"])])
 	
 	if cur_line_idx > len(_dialogue_data["lines"])-1:
@@ -64,6 +67,9 @@ func _dialog_step():
 	
 	cur_line = _dialogue_data["lines"][cur_line_idx]
 	add_bubble(cur_line["side"],cur_line["text"])
+	
+	if cur_line.has("signal"):
+		dialogue_signal.emit(cur_line.get("signal"))
 	
 	if cur_line_idx == len(_dialogue_data["lines"])-1:
 		DebugUI.DebugLog("reached end of dialogue")

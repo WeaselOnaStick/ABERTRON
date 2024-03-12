@@ -1,0 +1,146 @@
+{
+	"init_mode" : "signal", 
+	"lines": [
+		{
+			"side" : "right",
+			"text" : "If you're reading this text me back!"	,
+			"step_trigger" : "manual",
+		},
+		{
+			"side" : "left",
+			"text" : "Hello?",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Hi there, you must be ъ. Arrived at the station ABX-03",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Let me get the lights in there...",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "",
+			"step_trigger" : "delay",
+			"delay_after" : 0.3,
+			"signal" : 0
+		},
+		{
+			"side" : "right",
+			"text" : "There, lights should be on now",
+			"step_trigger" : "delay",
+			"delay_after" : 4,
+		},
+		{
+			"side" : "right",
+			"text" : "Sorry if your station looks like something from a horror movie haha",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "If you remember from your basic training, this is just a pilot program, so.. not a lot of budget.",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "You didn't sleep on your training, right?",
+			"step_trigger" : "manual"
+		},
+		{
+			"side" : "left",
+			"text" : "...",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "Uh... Well you can already push a few buttons, and you somehow found your way to this station. That should be enough for this job anyway",
+			"step_trigger" : "delay",
+			"delay_after" : 3
+		},
+		{
+			"side" : "right",
+			"text" : "This station is pretty basic. Maybe corpo will upgrade it if the programm takes off. Please tell me you can at least recall the name of it",
+			"step_trigger" : "manual",
+		},
+		{
+			"side" : "left",
+			"text" : "...Sorry 😅",
+			"step_trigger" : "delay",
+			"delay_after" : 3
+		},
+		{
+			"side" : "right",
+			"text" : "Ugh. It's \"QUALITY ASSURANCE AND PERFORMANCE EVALUATION PROGRAM FOR HARDWARE APPLIANCES\". Or QAPEPHA, rolls off the tongue",
+			"step_trigger" : "delay",
+			"delay_after" : 3
+		},
+		{
+			"side" : "right",
+			"text" : "Just messing with you. I could never remember it myself. I just copypasted it, that's why it's all caps haha",
+			"step_trigger" : "delay",
+			"delay_after" : 1
+		},
+		{
+			"side" : "right",
+			"text" : "Aaanyway, we inspect stuff here. Mostly for other companies, like outsourcing. Checking if their hardware at least turns on, or has any other abariton",
+			"step_trigger" : "delay",
+			"delay_after" : 1.2
+		},
+		{
+			"side" : "right",
+			"text" : "Abberrashon*",
+			"step_trigger" : "delay",
+			"delay_after" : 1.3
+		},
+		{
+			"side" : "right",
+			"text" : "Aba",
+			"step_trigger" : "delay",
+			"delay_after" : 0.9
+		},
+		{
+			"side" : "right",
+			"text" : "Abereitons?",
+			"step_trigger" : "delay",
+			"delay_after" : 1.2
+		},
+		{
+			"side" : "right",
+			"text" : "Defects",
+			"step_trigger" : "delay",
+			"delay_after" : 1.2
+		},
+		{
+			"side" : "right",
+			"text" : "Speaking of which. A new package should arrive soon for you to inspect. Take it and scan it with the barcode scanner over there ->",
+			"step_trigger" : "signal",
+			"delay_after" : 2,
+			"signal" : 1
+		},
+		{
+			"side" : "right",
+			"text" : "✨LEVEL UP✨",
+			"step_trigger" : "delay",
+			"delay_after" : "0.2"
+		},
+		{
+			"side" : "left",
+			"text" : "okay?",
+			"step_trigger" : "delay",
+			"delay_after" : 2,
+		},
+		{
+			"side" : "right",
+			"text" : "If you see this message then I failed to finish the dialogue before the jam deadline\n\n[img=0x256]res://Assets/Sprites/lol.png[/img]\nmfw",
+		}
+	]
+}
