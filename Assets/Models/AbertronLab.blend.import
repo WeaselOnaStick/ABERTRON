@@ -32,6 +32,10 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "materials": {
+"WireMat": {
+"use_external/enabled": true,
+"use_external/path": "res://Assets/Materials/wire.material"
+},
 "hazard_metal": {
 "use_external/enabled": true,
 "use_external/path": "res://Assets/Materials/hazard_metal.tres"

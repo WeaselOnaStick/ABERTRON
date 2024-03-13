@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drj6uq5tsa26q"
-path.s3tc="res://.godot/imported/lol.png-09f41a4436d451462b440fc06425f323.s3tc.ctex"
+uid="uid://be0iqhydc1jpj"
+path.s3tc="res://.godot/imported/metal_0062_normal_opengl_1k.png-c51d98b9e025239ae7087a99b738eca2.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Sprites/lol.png"
-dest_files=["res://.godot/imported/lol.png-09f41a4436d451462b440fc06425f323.s3tc.ctex"]
+source_file="res://Assets/Materials/metal_0062_1k_Mi242e/metal_0062_normal_opengl_1k.png"
+dest_files=["res://.godot/imported/metal_0062_normal_opengl_1k.png-c51d98b9e025239ae7087a99b738eca2.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://Assets/Materials/metal_0062_1k_Mi242e/metal_0062_normal_opengl_1k.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

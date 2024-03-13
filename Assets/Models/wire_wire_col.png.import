@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drj6uq5tsa26q"
-path.s3tc="res://.godot/imported/lol.png-09f41a4436d451462b440fc06425f323.s3tc.ctex"
+uid="uid://bephghmvw1nk5"
+path.s3tc="res://.godot/imported/wire_wire_col.png-bce68b1f461dbccab26df101b46881a6.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "b6b441363e124a22160cc4ce415523d5"
+}
 
 [deps]
 
-source_file="res://Assets/Sprites/lol.png"
-dest_files=["res://.godot/imported/lol.png-09f41a4436d451462b440fc06425f323.s3tc.ctex"]
+source_file="res://Assets/Models/wire_wire_col.png"
+dest_files=["res://.godot/imported/wire_wire_col.png-bce68b1f461dbccab26df101b46881a6.s3tc.ctex"]
 
 [params]
 

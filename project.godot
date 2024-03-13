@@ -60,6 +60,7 @@ folder_colors={
 [global_group]
 
 Interactable="Areas that player can interact with manually"
+CanBePickedUp=""
 
 [input]
 
@@ -117,5 +118,3 @@ pause={
 [rendering]
 
 lights_and_shadows/directional_shadow/soft_shadow_filter_quality=1
-anti_aliasing/quality/msaa_3d=1
-anti_aliasing/quality/screen_space_aa=1

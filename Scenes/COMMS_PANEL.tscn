@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c361pb26hkcmx"]
+[gd_scene load_steps=8 format=3 uid="uid://c361pb26hkcmx"]
 
 [ext_resource type="Script" path="res://Scripts/CommsPanel.gd" id="1_hvtbr"]
 [ext_resource type="PackedScene" uid="uid://2cfugne7ngwi" path="res://Scenes/DialogueRenderer.tscn" id="2_k1b6d"]
@@ -6,15 +6,56 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_slukk"]
 viewport_path = NodePath("CSGBox3D/Sprite3D/SubViewport")
 
+[sub_resource type="SystemFont" id="SystemFont_fdvv2"]
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+msdf_size = 64
+oversampling = 2.3
+
+[sub_resource type="Theme" id="Theme_ijo5f"]
+resource_local_to_scene = true
+default_font_size = 0
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
+
+[sub_resource type="Theme" id="Theme_1elbg"]
+resource_local_to_scene = true
+default_font_size = 0
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_g2ltc"]
 size = Vector3(1.18756, 2.31537, 0.509888)
 
-[node name="COMMS" type="Node3D"]
+[node name="COMMS" type="Node3D" groups=["Interactable"]]
 script = ExtResource("1_hvtbr")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09568, -0.00316358)
-size = Vector3(1.505, 2.689, 0.19)
 
 [node name="Sprite3D" type="Sprite3D" parent="CSGBox3D"]
 transform = Transform3D(1, 0, 2.76566e-08, 0, 1, 0, -2.76566e-08, 0, 1, 3.56675e-07, 0.111725, 0.111112)
@@ -27,7 +68,6 @@ disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(1092, 1930)
-render_target_update_mode = 3
 
 [node name="DialogueRenderer" parent="CSGBox3D/Sprite3D/SubViewport" instance=ExtResource("2_k1b6d")]
 auto_translate_mode = 1
@@ -37,7 +77,40 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 dialogue_file = null
 
-[node name="InteractionArea" type="Area3D" parent="." groups=["Interactable"]]
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
+theme = SubResource("Theme_ijo5f")
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="SpeechBubbleLeft7" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="5"]
+custom_minimum_size = Vector2(0, 2042)
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="SpeechBubbleLeft8" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="6"]
+custom_minimum_size = Vector2(0, 1976)
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="SpeechBubbleLeft9" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="7"]
+custom_minimum_size = Vector2(0, 2042)
+
+[node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9/MarginContainer" index="0"]
+theme = SubResource("Theme_1elbg")
+
+[node name="InteractionArea" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0.00399721, 1.16934, 0.184632)
@@ -49,3 +122,13 @@ spot_range = 4.56376
 spot_angle = 72.8399
 
 [connection signal="dialogue_stepped" from="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer" to="." method="lights_toggle" flags=6 binds= [true]]
+
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8"]
+[editable path="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9"]
