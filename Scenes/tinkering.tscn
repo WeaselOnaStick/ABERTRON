@@ -147,3 +147,5 @@ transform = Transform3D(0.922046, 0, -0.387081, 0, 1, 0, 0.387081, 0, 0.922046, 
 script = ExtResource("5_dyc6f")
 
 [node name="TestSubject" parent="." instance=ExtResource("5_5ndo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14949, 0)
+max_contacts_reported = 2

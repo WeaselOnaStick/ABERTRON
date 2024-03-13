@@ -1,6 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3txn2ne2hbnv"]
+[gd_scene load_steps=13 format=3 uid="uid://c3txn2ne2hbnv"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t4ml8"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_bank.gd" id="1_0e6ia"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_event_resource.gd" id="2_j3jbf"]
+[ext_resource type="AudioStream" uid="uid://cx7vto2au3v57" path="res://Assets/Audio/impact/hit1.wav" id="3_doc4j"]
+[ext_resource type="AudioStream" uid="uid://dqql8fblbxmmk" path="res://Assets/Audio/impact/hit2.wav" id="4_lwyah"]
+[ext_resource type="AudioStream" uid="uid://bjsp5pd77vq65" path="res://Assets/Audio/impact/hit3.wav" id="5_q0f7b"]
+
+[sub_resource type="GDScript" id="GDScript_37psw"]
+script/source = "class_name PickUpObj extends RigidBody3D
+
+@onready var sound: SoundBank = $SoundBank
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func interact():
+	pass
+
+
+func _on_body_entered(body: Node) -> void:
+	var vel_sq := linear_velocity.length_squared()
+	DebugUI.DebugLog(vel_sq)
+	SoundManager.play_on_node_varied(\"impact\",\"hit\",self, 1.0, linear_to_db(remap(vel_sq, 0, 16 ,0, 1)))
+"
 
 [sub_resource type="BoxMesh" id="BoxMesh_sn8vk"]
 size = Vector3(0.715, 0.465, 0.44)
@@ -68,9 +91,18 @@ orientation = 2
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_toxfg"]
 points = PackedVector3Array(0.3575, 0.2325, 0.22, 0.3575, 0.2325, -0.22, -0.3575, 0.2325, 0.22, 0.3575, -0.2325, 0.22, 0.3575, -0.2325, -0.22, -0.3575, 0.2325, -0.22, -0.3575, -0.2325, 0.22, -0.3575, -0.2325, -0.22)
 
-[node name="TestSubject" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-physics_material_override = SubResource("PhysicsMaterial_t4ml8")
+[sub_resource type="Resource" id="Resource_1t1kg"]
+script = ExtResource("2_j3jbf")
+name = "hit"
+bus = ""
+volume = 0.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("3_doc4j"), ExtResource("4_lwyah"), ExtResource("5_q0f7b")])
+
+[node name="TestSubject" type="RigidBody3D" groups=["CanBePickedUp", "Interactable"]]
+max_contacts_reported = 3
+contact_monitor = true
+script = SubResource("GDScript_37psw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_sn8vk")
@@ -83,3 +115,18 @@ mesh = SubResource("PlaneMesh_yfmnd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConvexPolygonShape3D_toxfg")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+monitoring = false
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1.17587, 0, 0, 0, 1.17587, 0, 0, 0, 1.17587, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_toxfg")
+
+[node name="SoundBank" type="Node" parent="."]
+script = ExtResource("1_0e6ia")
+label = "impact"
+bus = "SFX"
+events = Array[ExtResource("2_j3jbf")]([SubResource("Resource_1t1kg")])
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
