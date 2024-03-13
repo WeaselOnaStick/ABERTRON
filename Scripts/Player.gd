@@ -7,9 +7,10 @@ extends CharacterBody3D
 @onready var cam = $Camera3D
 @onready var interaction_ray : RayCast3D = %InteractionRay
 @onready var holding_position: Marker3D = %HoldingPosition
+var cur_held_obj : Node3D = null
 
-
-var can_interact = false
+# Locked out during tutorial and other gameplay moments
+var can_interact = true
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -34,7 +35,7 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
-	if interaction_ray.is_colliding() and interaction_ray.get_collider().is_in_group("Interactable"):
+	if interaction_ray.is_colliding() and interaction_ray.get_collider().get_parent().is_in_group("Interactable"):
 		FPS_HUD.toggle_crosshair_highlight(true)
 	else:
 		FPS_HUD.toggle_crosshair_highlight(false)
@@ -65,11 +66,42 @@ func _input(event):
 		interact()
 
 func interact():
+	if cur_held_obj != null:
+		drop_obj(cur_held_obj)
+		return
+	
 	DebugUI.DebugLog(interaction_ray.get_collider())
 	if not can_interact:
 		return
 	if not interaction_ray.is_colliding():
 		return
-	var collider = interaction_ray.get_collider()
-	if collider.get_parent().has_method("interact"):
-		collider.get_parent().interact()
+	var collider : Node3D = interaction_ray.get_collider()
+	var col_obj = collider.get_parent_node_3d()
+	if col_obj.is_in_group("Interactable"):
+		col_obj.interact()
+	
+	if col_obj.is_in_group("CanBePickedUp") and cur_held_obj == null:
+		pick_up_obj(col_obj)
+	elif col_obj.is_in_group("CanBePickedUp") and cur_held_obj == null:
+		drop_obj(col_obj)
+	
+
+func pick_up_obj(obj : Node3D):
+	obj.reparent(holding_position)
+	(obj as RigidBody3D).freeze = true
+	obj.position = Vector3.ZERO
+	cur_held_obj = obj
+	
+	var tw := create_tween().tween_method(_smooth_transf_reset, 0.0, 1.0, 0.3)
+	
+func _smooth_transf_reset(x : float):
+	if cur_held_obj == null:
+		return
+	cur_held_obj.transform = cur_held_obj.transform.interpolate_with(Transform3D.IDENTITY, x)
+		
+	
+	
+func drop_obj(obj : Node3D):
+	obj.reparent(get_parent_node_3d())
+	(obj as RigidBody3D).freeze = false
+	cur_held_obj = null
