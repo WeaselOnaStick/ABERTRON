@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://do1mq34dysh3o" path="res://Scenes/speech_bubble_right.tscn" id="1_11cp6"]
 [ext_resource type="Script" path="res://Scripts/DialogueRenderer.gd" id="1_j8w1h"]
 [ext_resource type="JSON" path="res://Assets/Dialogue/test.json" id="2_5rn4e"]
-[ext_resource type="PackedScene" uid="uid://dpk0lnbmv6622" path="res://Scenes/speech_bubble_left.tscn" id="2_a0a2x"]
+[ext_resource type="PackedScene" uid="uid://dpk0lnbmv6622" path="res://Scenes/speech_bubble_woas.tscn" id="2_a0a2x"]
 [ext_resource type="PackedScene" uid="uid://cmyiskwmoi44h" path="res://Scenes/typing_indicator.tscn" id="5_jhwxa"]
 [ext_resource type="PackedScene" uid="uid://bs0a3uj83445s" path="res://Scenes/end_of_dialogue.tscn" id="6_5u6bn"]
 
@@ -194,7 +194,7 @@ layout_mode = 2
 size_flags_vertical = 0
 
 [node name="SpeechBubbleRight" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("1_11cp6")]
-custom_minimum_size = Vector2(0, 260)
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
@@ -204,6 +204,7 @@ qweqwe
 asdf"
 
 [node name="SpeechBubbleLeft3" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3/MarginContainer" index="0"]
@@ -211,6 +212,7 @@ theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
 [node name="SpeechBubbleLeft4" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4/MarginContainer" index="0"]
@@ -218,6 +220,7 @@ theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
 [node name="SpeechBubbleLeft5" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5/MarginContainer" index="0"]
@@ -225,6 +228,7 @@ theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
 [node name="SpeechBubbleLeft6" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6/MarginContainer" index="0"]
@@ -232,7 +236,7 @@ theme = SubResource("Theme_f85pf")
 text = "aaaaaaaaaaa"
 
 [node name="SpeechBubbleLeft7" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
-custom_minimum_size = Vector2(0, 2174)
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
@@ -242,7 +246,7 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate e
 Sed pulvinar felis pretium ex molestie vehicula. Integer pulvinar augue tortor, eu blandit risus aliquet et. Nunc et nisl rhoncus, luctus sapien vel, aliquam purus. Cras at ligula pellentesque, porta felis at, semper ipsum. Nam pretium luctus velit, nec posuere erat. Vivamus commodo, lectus eu congue condimentum, neque ligula vulputate neque, nec fringilla orci sapien non augue. Nam posuere nisi arcu, semper faucibus eros tristique commodo. In vel ante vulputate, gravida velit at, cursus dolor."
 
 [node name="SpeechBubbleLeft8" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
-custom_minimum_size = Vector2(0, 2108)
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8/MarginContainer" index="0"]
@@ -251,7 +255,7 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vulputate e
 Sed pulvinar felis pretium ex molestie vehicula. Integer pulvinar augue tortor, eu blandit risus aliquet et. Nunc et nisl rhoncus, luctus sapien vel, aliquam purus. Cras at ligula pellentesque, porta felis at, semper ipsum. Nam pretium luctus velit, nec posuere erat. Vivamus commodo, lectus eu congue condimentum, neque ligula vulputate neque, nec fringilla orci sapien non augue. Nam posuere nisi arcu, semper faucibus eros tristique commodo. In vel ante vulputate, gravida velit at, cursus dolor."
 
 [node name="SpeechBubbleLeft9" parent="Panel/ScrollContainer/Margin/BubbleContainer" instance=ExtResource("2_a0a2x")]
-custom_minimum_size = Vector2(0, 2174)
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 
 [node name="TextField" parent="Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9/MarginContainer" index="0"]

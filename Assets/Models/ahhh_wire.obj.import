@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cvhky5tsrhbr4"
+path="res://.godot/imported/ahhh_wire.obj-9ccd996232ae55ad625f17881e352b30.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ahhh_wire.obj-9ccd996232ae55ad625f17881e352b30.mesh"]
+
+source_file="res://Assets/Models/ahhh_wire.obj"
+dest_files=["res://.godot/imported/ahhh_wire.obj-9ccd996232ae55ad625f17881e352b30.mesh", "res://.godot/imported/ahhh_wire.obj-9ccd996232ae55ad625f17881e352b30.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

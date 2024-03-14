@@ -25,6 +25,15 @@ var HINT_PAUSE := "PRESS [img]%s[/img] TO PAUSE THE GAME" % ESC_KEY_LIGHT
 
 signal hint_ended
 
+var show_interact_button := true
+var how_many_times_interacted = 0:
+	get: 
+		return how_many_times_interacted
+	set(val):
+		if val > 4:
+			show_interact_button = false
+		how_many_times_interacted = val
+
 func _ready():
 	clear_hints()
 	#_display_hint("MOVE AROUND WITH [img]%s[/img] & [img]%s[/img]" % [ICON_WASD_LIGHT, ICON_MOUSE])

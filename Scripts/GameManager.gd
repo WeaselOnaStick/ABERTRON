@@ -73,6 +73,7 @@ func level1_start():
 
 func _input(event):
 	if event.is_action_pressed("Debug_Force_Quit"):
+		return
 		get_tree().quit()
 	
 	if event.is_action_pressed("pause"):

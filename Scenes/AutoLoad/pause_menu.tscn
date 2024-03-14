@@ -26,8 +26,14 @@ func _on_fullscreen_checkbox_toggled(toggled_on):
 script/source = "extends Button
 
 
-func _ready() -> void:	
-	GameManager.game_pause_toggle()
+
+
+func _on_pressed() -> void:
+	$\"../../../..\".visible = false
+	PauseMenu.visible = false
+	GameManager.game_state = GameManager.LEVEL
+	Input.mouse_mode = GameManager.mouse_mode_cache
+	get_tree().paused = false
 "
 
 [sub_resource type="GDScript" id="GDScript_jpm3n"]
@@ -152,3 +158,5 @@ size_flags_horizontal = 4
 theme = ExtResource("1_nrtsm")
 text = "QUIT TO MENU"
 script = SubResource("GDScript_jpm3n")
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/ReturnToGame" to="Panel/MarginContainer/VBoxContainer/ReturnToGame" method="_on_pressed"]

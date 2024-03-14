@@ -5,6 +5,7 @@ var _dialogue_data
 
 const SPEECH_BUBBLE_LEFT = preload("res://Scenes/speech_bubble_left.tscn")
 const SPEECH_BUBBLE_RIGHT = preload("res://Scenes/speech_bubble_right.tscn")
+const SPEECH_BUBBLE_WOAS = preload("res://Scenes/speech_bubble_woas.tscn")
 const TYPING_INDICATOR = preload("res://Scenes/typing_indicator.tscn")
 var typing_bubble : Panel
 
@@ -41,7 +42,7 @@ func interact_signal():
 
 func _ready():
 	if dialogue_file != null:
-		_dialogue_data = dialogue_file.data
+		init(dialogue_file)
 	clear_bubble_container()
 
 func init(input_dialogue_file : JSON):
@@ -116,6 +117,8 @@ func add_bubble(side := "left", text := "ERROR"):
 		new_bubble = SPEECH_BUBBLE_LEFT.instantiate()
 	elif side == "right":
 		new_bubble = SPEECH_BUBBLE_RIGHT.instantiate()
+	elif side == "woas":
+		new_bubble = SPEECH_BUBBLE_WOAS.instantiate()
 	
 	bubble_container.add_child(new_bubble)
 	new_bubble.init()

@@ -16,38 +16,38 @@
 			"side" : "right",
 			"text" : "Hi there, you must be ъ. Arrived at the station ABX-03",
 			"step_trigger" : "delay",
-			"delay_after" : 2,
+			"delay_after" : 4,
 		},
 		{
 			"side" : "right",
 			"text" : "Let me get the lights in there...",
 			"step_trigger" : "delay",
-			"delay_after" : 2,
+			"delay_after" : 3,
 		},
 		{
 			"side" : "right",
 			"text" : "",
 			"step_trigger" : "delay",
-			"delay_after" : 0.3,
+			"delay_after" : 1,
 			"signal" : 0
 		},
 		{
 			"side" : "right",
 			"text" : "There, lights should be on now",
 			"step_trigger" : "delay",
-			"delay_after" : 4,
+			"delay_after" : 5,
 		},
 		{
 			"side" : "right",
 			"text" : "Sorry if your station looks like something from a horror movie haha",
 			"step_trigger" : "delay",
-			"delay_after" : 2,
+			"delay_after" : 7,
 		},
 		{
 			"side" : "right",
 			"text" : "If you remember from your basic training, this is just a pilot program, so.. not a lot of budget.",
 			"step_trigger" : "delay",
-			"delay_after" : 2,
+			"delay_after" : 3,
 		},
 		{
 			"side" : "right",
@@ -62,9 +62,9 @@
 		},
 		{
 			"side" : "right",
-			"text" : "Uh... Well you can already push a few buttons, and you somehow found your way to this station. That should be enough for this job anyway",
+			"text" : "Uh... Well you can already push a few buttons, and you somehow found your way to this station. That should be enough for this job anyway. I'll just walk you through then",
 			"step_trigger" : "delay",
-			"delay_after" : 3
+			"delay_after" : 6
 		},
 		{
 			"side" : "right",
@@ -73,27 +73,27 @@
 		},
 		{
 			"side" : "left",
-			"text" : "...Sorry 😅",
+			"text" : "...Sorry",
 			"step_trigger" : "delay",
-			"delay_after" : 3
+			"delay_after" : 5
 		},
 		{
 			"side" : "right",
-			"text" : "Ugh. It's \"QUALITY ASSURANCE AND PERFORMANCE EVALUATION PROGRAM FOR HARDWARE APPLIANCES\". Or QAPEPHA, rolls off the tongue",
+			"text" : "How can you forget what you signed up for? It's \"QUALITY ASSURANCE AND PERFORMANCE EVALUATION PROGRAM FOR HARDWARE APPLIANCES\". Or QAPEPHA for short, rolls off the tongue",
 			"step_trigger" : "delay",
-			"delay_after" : 3
+			"delay_after" : 9
 		},
 		{
 			"side" : "right",
 			"text" : "Just messing with you. I could never remember it myself. I just copypasted it, that's why it's all caps haha",
 			"step_trigger" : "delay",
-			"delay_after" : 1
+			"delay_after" : 7
 		},
 		{
 			"side" : "right",
-			"text" : "Aaanyway, we inspect stuff here. Mostly for other companies, like outsourcing. Checking if their hardware at least turns on, or has any other abariton",
+			"text" : "Aaanyway, we inspect stuff here, like microwaves and toasters. Checking if their hardware at least turns on, or has any other abaritons",
 			"step_trigger" : "delay",
-			"delay_after" : 1.2
+			"delay_after" : 6
 		},
 		{
 			"side" : "right",
@@ -103,9 +103,9 @@
 		},
 		{
 			"side" : "right",
-			"text" : "Aba",
+			"text" : "Abarations*",
 			"step_trigger" : "delay",
-			"delay_after" : 0.9
+			"delay_after" : 1.2
 		},
 		{
 			"side" : "right",
@@ -115,32 +115,74 @@
 		},
 		{
 			"side" : "right",
-			"text" : "Defects",
+			"text" : "Defects.",
 			"step_trigger" : "delay",
-			"delay_after" : 1.2
+			"delay_after" : 4
 		},
 		{
 			"side" : "right",
 			"text" : "Speaking of which. A new package should arrive soon for you to inspect. Take it and scan it with the barcode scanner over there ->",
 			"step_trigger" : "signal",
-			"delay_after" : 2,
 			"signal" : 1
 		},
 		{
 			"side" : "right",
-			"text" : "✨LEVEL UP✨",
+			"text" : "Good, alright. You can lift up an average 7kg  oscilograph.",
 			"step_trigger" : "delay",
-			"delay_after" : "0.2"
+			"delay_after" : 3
+		},
+		{
+			"side" : "right",
+			"text" : "I wasn't trying to patronize you by the way, I have no idea what you even look like. Since apparently CCTVs are also expensive",
+			"step_trigger" : "delay",
+			"delay_after" : 6
+		},
+		{
+			"side" : "right",
+			"text" : "Anyway, when you scan incoming parcels you should find a digital checklist that gets updated for each parcel. It'll tell you what are the next steps",
+			"step_trigger" : "manual",
+			"delay_after" : 4
 		},
 		{
 			"side" : "left",
-			"text" : "okay?",
+			"text" : "I don't see any checklist?",
 			"step_trigger" : "delay",
 			"delay_after" : 2,
 		},
 		{
-			"side" : "right",
-			"text" : "If you see this message then I failed to finish the dialogue before the jam deadline\n\n[img=0x256]res://Assets/Sprites/lol.png[/img]\nmfw",
-		}
+			"side" : "woas",
+			"text" : "Hey, sorry to interrupt but this is where the demo ends.",
+			"step_trigger" : "delay",
+			"delay_after" : 3,
+		},
+		{
+			"side" : "woas",
+			"text" : "First off, thanks for spending your precious time on this unfinished \"game\"",
+			"step_trigger" : "delay",
+			"delay_after" : 3,
+		},
+		{
+			"side" : "woas",
+			"text" : "As far as I'm concerned, I didn't enter the jam to win (not a cope). But rather to get practical experience developing with a new engine. As corny as it sounds I learned [i]quite a lot[/i] in these short 2 weeks",
+			"step_trigger" : "manual",
+		},
+		{
+			"side" : "left",
+			"text" : "...Okay?",
+			"step_trigger" : "delay",
+			"delay_after" : 3,
+		},
+		{
+			"side" : "woas",
+			"text" : "To be honest, I spent more time dealing with unexpected irl issues that I won't delve on here. I spent way too much learning the engine and drafting concepts than actually developing. But I'm happy to say there's some banger ideas I have for this project (not a cope)",
+			"step_trigger" : "delay",
+			"delay_after" : 10,
+		},
+		{
+			"side" : "woas",
+			"text" : "Oh crap, I still have to test and upload the game. Gotta run!",
+			"step_trigger" : "delay",
+			"delay_after" : 3,
+		},
 	]
 }

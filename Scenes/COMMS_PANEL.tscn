@@ -77,6 +77,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 dialogue_file = null
 
+[node name="SpeechBubbleRight" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="0"]
+custom_minimum_size = Vector2(0, 128)
+
 [node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
 theme = SubResource("Theme_ijo5f")
 
@@ -93,19 +96,19 @@ theme = SubResource("Theme_1elbg")
 theme = SubResource("Theme_1elbg")
 
 [node name="SpeechBubbleLeft7" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="5"]
-custom_minimum_size = Vector2(0, 2042)
+custom_minimum_size = Vector2(0, 128)
 
 [node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
 theme = SubResource("Theme_1elbg")
 
 [node name="SpeechBubbleLeft8" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="6"]
-custom_minimum_size = Vector2(0, 1976)
+custom_minimum_size = Vector2(0, 128)
 
 [node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8/MarginContainer" index="0"]
 theme = SubResource("Theme_1elbg")
 
 [node name="SpeechBubbleLeft9" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="7"]
-custom_minimum_size = Vector2(0, 2042)
+custom_minimum_size = Vector2(0, 128)
 
 [node name="TextField" parent="CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9/MarginContainer" index="0"]
 theme = SubResource("Theme_1elbg")

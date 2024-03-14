@@ -15,5 +15,7 @@ func toggle_crosshair_visible(enabled := true):
 func toggle_crosshair_highlight(highlight := true):
 	if highlight:
 		crosshair.modulate = CROSSHAIR_COLOR_INTERACTABLE
+		$how_to_interact_label.visible = TutorialGUI.show_interact_button
 	else:
 		crosshair.modulate = CROSSHAIR_COLOR_DEFAULT
+		$how_to_interact_label.visible = false

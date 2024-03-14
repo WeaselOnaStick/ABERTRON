@@ -1,5 +1,5 @@
 {
-	"init_mode" : "auto", 
+	"init_mode" : "manual", 
 	"lines": [
 		{
 			"side" : "left",
@@ -25,7 +25,7 @@
 			"side" : "right",
 			"text" : "Quisque dictum, magna non rutrum cursus, felis ex posuere lacus, vitae mattis elit ante ac libero. Sed aliquam, ligula id commodo pulvinar, quam nulla ultricies magna, vel sodales magna velit et metus. Pellentesque vitae varius leo, sed viverra diam. In quis ligula vel elit hendrerit ullamcorper. Cras posuere purus et tristique tristique. Nam at tellus non ligula eleifend sodales ut et felis. Nullam ultricies faucibus magna, vitae scelerisque felis euismod et. Morbi pharetra risus ac magna tempus, at aliquam tortor consectetur. Maecenas magna mi, consequat eget arcu et, pulvinar sollicitudin ipsum.",
 			
-			"step_trigger" : "delay",
+			"step_trigger" : "manual",
 			"delay_after" : 2,
 		},
 		{

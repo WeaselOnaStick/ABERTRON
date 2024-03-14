@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ciwlw4uy0d0j"]
+[gd_scene load_steps=22 format=3 uid="uid://ciwlw4uy0d0j"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_1.gd" id="1_jo0h1"]
 [ext_resource type="PackedScene" uid="uid://diwwky0b8kuuq" path="res://Scenes/abertron_lab_base.tscn" id="1_rpjim"]
@@ -6,6 +6,10 @@
 [ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_bank.gd" id="4_yxi67"]
 [ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_event_resource.gd" id="5_i64b4"]
 [ext_resource type="AudioStream" uid="uid://c8q432arawvkc" path="res://Assets/Audio/lights_on.mp3" id="6_6e0o7"]
+[ext_resource type="AudioStream" uid="uid://da3o5ujnijgjt" path="res://Assets/Audio/beep.wav" id="7_p6u6f"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_drywi"]
+viewport_path = NodePath("CSGBox3D/Sprite3D/SubViewport")
 
 [sub_resource type="SystemFont" id="SystemFont_fdvv2"]
 subpixel_positioning = 0
@@ -80,6 +84,8 @@ ssil_radius = 3.5
 ssil_intensity = 0.38
 sdfgi_use_occlusion = true
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_v5tjj"]
+
 [sub_resource type="Resource" id="Resource_thpbs"]
 script = ExtResource("5_i64b4")
 name = "lights_on"
@@ -88,13 +94,44 @@ volume = 0.0
 pitch = 1.0
 streams = Array[AudioStream]([ExtResource("6_6e0o7")])
 
+[sub_resource type="Resource" id="Resource_fu520"]
+script = ExtResource("5_i64b4")
+name = "beep"
+bus = ""
+volume = 0.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("7_p6u6f")])
+
+[sub_resource type="GDScript" id="GDScript_ado6u"]
+script/source = "extends Area3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(body: Node3D) -> void:
+	print(\"body OOB\")
+	body.global_position = %SubjectSpawnPoint.global_position
+	(body as RigidBody3D).linear_velocity = Vector3.ZERO
+"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6wsgk"]
+size = Vector3(45, 21.568, 45)
+
 [node name="Level1" type="Node3D"]
 script = ExtResource("1_jo0h1")
 
 [node name="abertron_lab" parent="." instance=ExtResource("1_rpjim")]
 
 [node name="Sprite3D" parent="abertron_lab/COMMS/CSGBox3D" index="0"]
-transform = Transform3D(0.998497, 0, -0.0548107, 0, 1, 0, 0.0548107, 0, 0.998497, -0.0203724, 0.111725, 0.0759265)
+texture = SubResource("ViewportTexture_drywi")
 
 [node name="TextField" parent="abertron_lab/COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
 theme = SubResource("Theme_rjfot")
@@ -121,8 +158,10 @@ theme = SubResource("Theme_ixsk0")
 theme = SubResource("Theme_ixsk0")
 
 [node name="Lights_fill" parent="abertron_lab/Lights" index="1"]
+transform = Transform3D(1, -1.06581e-14, -4.37114e-08, 4.37114e-08, 1.64203e-15, 1, -1.06581e-14, -1, 1.64203e-15, 0.187, 11.705, 0)
 light_indirect_energy = 0.65
 light_specular = 0.197
+shadow_enabled = false
 shadow_bias = 0.046
 shadow_normal_bias = 4.1
 shadow_opacity = 0.94
@@ -138,6 +177,15 @@ spot_angle_attenuation = 3.73214
 [node name="lab environment" parent="abertron_lab" index="4"]
 environment = SubResource("Environment_qfcm2")
 
+[node name="ScannerLight" parent="abertron_lab" index="6"]
+visible = true
+
+[node name="ScannerTrigger" type="Area3D" parent="abertron_lab"]
+transform = Transform3D(0.730367, 0.446269, -0.013814, -2.55116e-08, 0.0264851, 0.855617, 0.446483, -0.730017, 0.0225972, -3.5976, 1.56638, 6.74383)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="abertron_lab/ScannerTrigger"]
+shape = SubResource("SphereShape3D_v5tjj")
+
 [node name="Player" parent="." instance=ExtResource("3_so54j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10575, 0.894183, 16.8177)
 
@@ -145,11 +193,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.10575, 0.894183, 16.8177)
 script = ExtResource("4_yxi67")
 label = "Environment"
 bus = "SFX"
-events = Array[ExtResource("5_i64b4")]([SubResource("Resource_thpbs")])
+events = Array[ExtResource("5_i64b4")]([SubResource("Resource_thpbs"), SubResource("Resource_fu520")])
 
 [node name="SubjectSpawnPoint" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.990802, -0.134964, 0.00977853, 0.135318, 0.988212, -0.0715987, -9.31323e-10, 0.0722634, 0.997386, 0, 3.48944, 0)
+transform = Transform3D(0.990802, -0.134964, 0.00977853, 0.135318, 0.988212, -0.0715987, -9.31323e-10, 0.0722634, 0.997386, 0.00841135, 1.82047, -0.00110698)
+
+[node name="OutOfBoundsReturn" type="Area3D" parent="."]
+collision_layer = 15
+collision_mask = 15
+script = SubResource("GDScript_ado6u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OutOfBoundsReturn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.8503, 0)
+shape = SubResource("BoxShape3D_6wsgk")
+
+[connection signal="area_entered" from="abertron_lab/ScannerTrigger" to="." method="_on_scanner_trigger_area_entered"]
+[connection signal="body_entered" from="OutOfBoundsReturn" to="OutOfBoundsReturn" method="_on_body_entered"]
 
 [editable path="abertron_lab"]
 [editable path="abertron_lab/COMMS"]

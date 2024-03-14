@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpk0lnbmv6622"]
+[gd_scene load_steps=4 format=3 uid="uid://eufib82ocelr"]
 
 [ext_resource type="Texture2D" uid="uid://b7smxcx1fbkto" path="res://Assets/Sprites/texting_bubble_l.png" id="1_fnc6f"]
 [ext_resource type="Theme" uid="uid://bedb8xgky3ho8" path="res://Scenes/DialogueRenderer_RTL_theme.tres" id="2_klif3"]
 [ext_resource type="Script" path="res://Scripts/speech_bubble.gd" id="2_xtopt"]
 
 [node name="SpeechBubbleLeft" type="NinePatchRect"]
-custom_minimum_size = Vector2(0, 128)
+custom_minimum_size = Vector2(0, 2570)
 offset_right = 398.0
 offset_bottom = 128.0
 size_flags_vertical = 4

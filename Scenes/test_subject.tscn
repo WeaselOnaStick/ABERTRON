@@ -18,6 +18,8 @@ func _ready() -> void:
 func interact():
 	pass
 
+func _process(delta: float) -> void:
+	DebugUI.DebugVal(\"test_vel\",linear_velocity.length_squared())
 
 func _on_body_entered(body: Node) -> void:
 	var vel_sq := linear_velocity.length_squared()
@@ -99,7 +101,8 @@ volume = 0.0
 pitch = 1.0
 streams = Array[AudioStream]([ExtResource("3_doc4j"), ExtResource("4_lwyah"), ExtResource("5_q0f7b")])
 
-[node name="TestSubject" type="RigidBody3D" groups=["CanBePickedUp", "Interactable"]]
+[node name="TestSubject" type="RigidBody3D" groups=["CanBePickedUp", "Interactable", "TestSubject"]]
+collision_layer = 4
 max_contacts_reported = 3
 contact_monitor = true
 script = SubResource("GDScript_37psw")
@@ -117,7 +120,7 @@ mesh = SubResource("PlaneMesh_yfmnd")
 shape = SubResource("ConvexPolygonShape3D_toxfg")
 
 [node name="InteractionArea" type="Area3D" parent="."]
-monitoring = false
+priority = 1
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="InteractionArea"]
 transform = Transform3D(1.17587, 0, 0, 0, 1.17587, 0, 0, 0, 1.17587, 0, 0, 0)

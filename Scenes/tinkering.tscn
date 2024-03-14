@@ -1,10 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://itx74ssln20l"]
+[gd_scene load_steps=28 format=3 uid="uid://itx74ssln20l"]
 
 [ext_resource type="PackedScene" uid="uid://d11bc2bayl27w" path="res://Scenes/player.tscn" id="1_4kg6c"]
 [ext_resource type="ArrayMesh" uid="uid://d08l38ycxdd7b" path="res://Assets/SuzanneSubdiv.obj" id="2_6neqt"]
 [ext_resource type="PackedScene" uid="uid://c361pb26hkcmx" path="res://Scenes/COMMS_PANEL.tscn" id="3_ggen0"]
+[ext_resource type="JSON" path="res://Assets/Dialogue/lorem_test.json" id="4_kxm3t"]
 [ext_resource type="PackedScene" uid="uid://c3txn2ne2hbnv" path="res://Scenes/test_subject.tscn" id="5_5ndo5"]
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_bank.gd" id="5_dyc6f"]
+[ext_resource type="ArrayMesh" uid="uid://cvhky5tsrhbr4" path="res://Assets/Models/ahhh_wire.obj" id="7_olp46"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_86eyj"]
 
@@ -16,54 +18,12 @@ background_mode = 2
 sky = SubResource("Sky_qm0l8")
 ssao_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0kegg"]
-cull_mode = 2
-albedo_color = Color(0.313726, 0.305882, 0.427451, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_n0q6c"]
+radius = 0.0890479
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_s3vti"]
-top_radius = 0.1
-bottom_radius = 0.1
-radial_segments = 5
-rings = 11
-
-[sub_resource type="Animation" id="Animation_dvlui"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.748122, 2.61563, 1.64569)]
-}
-
-[sub_resource type="Animation" id="Animation_2op71"]
-resource_name = "test_wiggle"
-length = 24.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 8, 16, 24),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.748122, 2.61563, 1.64569), Vector3(-2.158, 2.61563, 1.64569), Vector3(-1.65627, 2.61563, 0.631436), Vector3(-0.748122, 2.61563, 1.64569)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xadoi"]
-_data = {
-"RESET": SubResource("Animation_dvlui"),
-"test_wiggle": SubResource("Animation_2op71")
-}
+[sub_resource type="SphereMesh" id="SphereMesh_1ceb0"]
+radius = 0.083
+height = 0.166
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnluu"]
 size = Vector3(55, 0.445, 55)
@@ -76,42 +36,108 @@ diffuse_mode = 1
 ao_enabled = true
 ao_light_affect = 0.75
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_liv61"]
+points = PackedVector3Array(-0.544345, -0.0761415, 0.277682, 0.210825, 0.862381, 0.296926, 0.26092, 0.68454, 0.773632, 0.715933, 0.0744667, 0.27147, 0.109324, -0.198832, 0.805057, -0.801037, 0.356276, 0.676329, 0.801037, 0.356276, 0.676329, -0.46375, 0.777919, 0.296926, 0.313635, -0.236051, 0.275443, -0.210825, -0.275965, 0.718453, -0.339774, 0.651766, 0.77646, -0.756475, 0.392544, 0.271164, 0.756416, 0.392536, 0.271186, 0.210825, -0.275965, 0.718453, -0.365904, 0.165183, 0.806033, 0.46375, 0.777919, 0.296926, -0.313646, -0.23607, 0.275433, 0.290538, 0.601795, 0.804146, -0.736651, 0.118802, 0.511215, -0.210825, 0.862381, 0.296926, 0.632476, 0.440627, 0.760692, 0.736563, 0.118823, 0.51122, -0.743146, 0.117264, 0.276076, 0.252924, -0.275965, 0.634205, -0.30659, 0.695416, 0.741507, -0.632476, 0.440627, 0.760692, -0.290547, 0.601804, 0.804154, -0.109326, -0.198841, 0.805062, 0.365894, 0.165186, 0.806026, 0.380494, 0.654489, 0.740117, -0.252924, -0.275965, 0.634205, 0.595546, -0.0442196, 0.271978)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vobny"]
+points = PackedVector3Array(0.16866, -0.276076, 0.760717, -0.337321, -0.950713, 0.465611, -0.337321, -0.950713, 0.592024, 0.337321, -0.950713, 0.465611, -0.295123, -0.276076, 0.254744, 0.295123, -0.276076, 0.254744, -0.25299, -0.276076, 0.676371, 0.16866, -0.782036, 0.760717, 0.0421321, -0.866305, 0.339091, -0.126462, -0.318245, 0.80289, 0.337321, -0.529091, 0.634197, -0.16866, -0.908474, 0.718544, 0.16866, -0.992882, 0.634197, -0.337321, -0.529091, 0.634197, -0.126462, -0.529091, 0.254744, -0.295123, -0.908474, 0.381264, 0.337321, -0.908474, 0.634197, 0.295123, -0.908474, 0.381264, -0.210792, -0.992882, 0.465611, -0.16866, -0.782036, 0.760717, 0.126462, -0.529091, 0.254744, 0.25299, -0.276076, 0.676371, 0.126462, -0.276076, 0.80289, -0.25299, -0.824206, 0.718544, -0.16866, -0.992882, 0.634197, 0.210792, -0.992882, 0.465611, 0.16866, -0.908474, 0.718544, 0.25299, -0.824206, 0.718544, -0.337321, -0.6135, 0.423491, 0.337321, -0.6135, 0.423491, -0.25299, -0.402584, 0.718544, 0.25299, -0.402584, 0.718544)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2oa5u"]
+points = PackedVector3Array(1.30704, 0.398511, -0.546392, 0.843351, -0.149581, -0.293463, 0.843351, -0.149581, -0.166906, 0.843351, 0.398511, -0.209104, 1.30704, 0.103509, -0.377674, 0.843351, 0.31419, -0.419835, 1.18056, -0.0229743, -0.504194, 1.26489, 0.482895, -0.377674, 0.885545, 0.35635, -0.166906, 1.05417, 0.482895, -0.462033, 1.01203, 0.0613476, -0.504194, 0.92769, -0.107358, -0.166906, 1.34928, 0.187707, -0.546392, 1.13841, 0.35635, -0.546392, 1.18056, -0.0651352, -0.377674, 0.843351, -0.0229743, -0.419835, 1.30704, 0.398511, -0.377674, 0.825137, 0.370009, -0.153245, 0.969884, 0.482895, -0.293463, 0.843351, 0.398511, -0.377674, 1.34928, 0.398511, -0.419835, 0.969884, -0.107358, -0.419835, 1.18056, 0.103509, -0.546392, 1.26489, 0.482895, -0.504194, 1.30704, 0.0613476, -0.504194, 1.01203, 0.35635, -0.504194, 1.34928, 0.14567, -0.419835, 0.92769, -0.149581, -0.209104, 1.05417, -0.107358, -0.419835, 1.09632, 0.482895, -0.293463, 1.26489, 0.0191867, -0.377674, 1.09632, -0.0229743, -0.504194)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_6lpt0"]
+points = PackedVector3Array(0.341331, 0.90368, -0.0941491, 0.339983, 0.902152, -0.134035, 0.843302, -0.149548, -0.293369, -0.139784, -0.412016, 0.199682, -0.716329, 0.500324, 0.21064, 0.752017, 0.430922, 0.230342, 0.0956053, 0.42354, -0.756522, -1.26494, 0.48278, -0.50407, 0.0878616, -0.224523, -0.518404, 0.701207, 0.587704, -0.371658, -0.291564, 0.851646, 0.174572, -0.0985817, 0.848138, -0.446038, -0.753495, 0.114585, 0.208935, 0.0978598, -0.43287, 0.215015, -1.18059, -0.0229701, -0.50407, 0.0536364, 0.115049, -0.751635, -1.30679, 0.103608, -0.37767, 0.69528, 0.0323916, 0.22158, -0.369893, 0.893915, -0.13573, 0.299511, 0.821962, 0.221069, 0.843302, -0.0652095, -0.37767, 0.0903617, 0.687665, -0.634677, 0.0554269, -0.348625, -0.253065, -1.34928, 0.356342, -0.546272, 0.74879, 0.590627, 0.0282309, 0.445093, 0.346209, -0.640682, -1.34928, 0.398441, -0.419872, -1.05375, -0.107309, -0.419872, -0.48437, 0.808724, 0.0941692, 0.489052, 0.815998, -0.291825, 0.0880774, -0.0731966, -0.670199, -0.100982, 0.458059, -0.747857)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_es521"]
+viewport_path = NodePath("CSGBox3D/Sprite3D/SubViewport")
+
+[sub_resource type="SystemFont" id="SystemFont_fdvv2"]
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+msdf_size = 64
+oversampling = 2.3
+
+[sub_resource type="Theme" id="Theme_50yht"]
+resource_local_to_scene = true
+default_font_size = 0
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
+
+[sub_resource type="Theme" id="Theme_ln0h2"]
+resource_local_to_scene = true
+default_font_size = 0
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_shadow_color = Color(1, 1, 1, 0)
+RichTextLabel/constants/line_separation = 0
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/constants/shadow_offset_x = 0
+RichTextLabel/constants/shadow_offset_y = 0
+RichTextLabel/constants/shadow_outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 16
+RichTextLabel/font_sizes/bold_italics_font_size = 16
+RichTextLabel/font_sizes/italics_font_size = 16
+RichTextLabel/font_sizes/mono_font_size = 16
+RichTextLabel/font_sizes/normal_font_size = 48
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_fdvv2")
+
+[sub_resource type="GDScript" id="GDScript_5syvc"]
+script/source = "extends Area3D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_area_entered(area: Area3D) -> void:
+	DebugUI.DebugLog(\"%s ENTERED\" % area.name)
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_f8xnv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8861r"]
+transparency = 1
+albedo_color = Color(0.350323, 0.709355, 0.944245, 0.682353)
+
+[sub_resource type="SphereMesh" id="SphereMesh_kcldm"]
+radius = 0.471
+height = 0.945
+
 [node name="Tinkering" type="Node3D"]
 process_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mnow8")
 
-[node name="ahhhh wire" type="SoftBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745236, 1.57975, 1.64876)
-material_override = SubResource("StandardMaterial3D_0kegg")
-mesh = SubResource("CylinderMesh_s3vti")
-simulation_precision = 100
-total_mass = 250.01
-linear_stiffness = 0.02
-pressure_coefficient = 0.985
-ray_pickable = false
-disable_mode = 1
-pinned_points = [78, 85]
-attachments/0/point_index = 78
-attachments/0/spatial_attachment_path = NodePath("../top")
-attachments/0/offset = Vector3(0.002886, -0.03588, 0.00307)
-attachments/1/point_index = 85
-attachments/1/spatial_attachment_path = NodePath("../bottom")
-attachments/1/offset = Vector3(0.012216, 0.0149419, 0.00307)
-
-[node name="top" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.748122, 2.61563, 1.64569)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="top"]
-libraries = {
-"": SubResource("AnimationLibrary_xadoi")
-}
-autoplay = "test_wiggle"
-speed_scale = 4.0
-
 [node name="bottom" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.757452, 0.564808, 1.64569)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.757452, 0.564808, 1.64569)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_n0q6c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("SphereMesh_1ceb0")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.853851, -2.27526e-08, 0.520518, -0.520518, -3.7323e-08, 0.853851, 0, -1, -4.37114e-08, 1.89768, 1.9999, -1.23326)
@@ -133,19 +159,120 @@ shape = SubResource("BoxShape3D_10g3l")
 transform = Transform3D(1, 0, 0, 0, 0.485176, 0.874417, 0, -0.874417, 0.485176, 0.99151, 1.00948, 1.23971)
 
 [node name="Player" parent="." instance=ExtResource("1_4kg6c")]
-transform = Transform3D(0.986098, 0, -0.166166, 0, 1, 0, 0.166166, 0, 0.986098, 3.54089, 1.25434, 1.76417)
+transform = Transform3D(0.986098, 0, -0.166166, 0, 1, 0, 0.166166, 0, 0.986098, 0.0628191, 1.25434, 2.94752)
 
 [node name="SuzanneSubdiv" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.809468, 0.587164, 0, -0.587164, 0.809468, -0.38318, 0.588175, -3.10778)
 material_override = SubResource("StandardMaterial3D_7dv25")
 mesh = ExtResource("2_6neqt")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="SuzanneSubdiv"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+
+[node name="@CollisionShape3D@210048" type="CollisionShape3D" parent="SuzanneSubdiv/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_liv61")
+
+[node name="@CollisionShape3D@210047" type="CollisionShape3D" parent="SuzanneSubdiv/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_vobny")
+
+[node name="@CollisionShape3D@210046" type="CollisionShape3D" parent="SuzanneSubdiv/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_2oa5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SuzanneSubdiv/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 2.98023e-08, 0, -2.98023e-08, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_6lpt0")
+
 [node name="COMMS" parent="." instance=ExtResource("3_ggen0")]
 transform = Transform3D(0.922046, 0, -0.387081, 0, 1, 0, 0.387081, 0, 0.922046, 1.72531, 0.497079, -0.491489)
+
+[node name="Sprite3D" parent="COMMS/CSGBox3D" index="0"]
+texture = SubResource("ViewportTexture_es521")
+
+[node name="DialogueRenderer" parent="COMMS/CSGBox3D/Sprite3D/SubViewport" index="0"]
+dialogue_file = ExtResource("4_kxm3t")
+
+[node name="SpeechBubbleRight" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="0"]
+custom_minimum_size = Vector2(0, 260)
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight/MarginContainer" index="0"]
+theme = SubResource("Theme_50yht")
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
+
+[node name="SpeechBubbleLeft7" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="5"]
+custom_minimum_size = Vector2(0, 2042)
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
+
+[node name="SpeechBubbleLeft8" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="6"]
+custom_minimum_size = Vector2(0, 1976)
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
+
+[node name="SpeechBubbleLeft9" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer" index="7"]
+custom_minimum_size = Vector2(0, 2042)
+
+[node name="TextField" parent="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9/MarginContainer" index="0"]
+theme = SubResource("Theme_ln0h2")
 
 [node name="MusicBank" type="Node" parent="."]
 script = ExtResource("5_dyc6f")
 
 [node name="TestSubject" parent="." instance=ExtResource("5_5ndo5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14949, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0489957, 2.82837, 0)
 max_contacts_reported = 2
+
+[node name="top" type="Marker3D" parent="TestSubject"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0489957, -0.225639, 0)
+
+[node name="SoftBody3D" type="SoftBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.491, 0)
+mesh = ExtResource("7_olp46")
+collision_layer = 0
+simulation_precision = 100
+total_mass = 10.01
+linear_stiffness = 0.09
+pressure_coefficient = 0.995
+pinned_points = [149]
+attachments/0/point_index = 149
+attachments/0/spatial_attachment_path = NodePath("../TestSubject/top")
+attachments/0/offset = Vector3(-8.45641e-07, -0.0760279, -8.45641e-07)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.17671, 0.945398, 0.309005)
+script = SubResource("GDScript_5syvc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_f8xnv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+material_override = SubResource("StandardMaterial3D_8861r")
+mesh = SubResource("SphereMesh_kcldm")
+
+[connection signal="area_entered" from="Area3D" to="Area3D" method="_on_area_entered"]
+
+[editable path="COMMS"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleRight"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft3"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft4"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft5"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft6"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft7"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft8"]
+[editable path="COMMS/CSGBox3D/Sprite3D/SubViewport/DialogueRenderer/Panel/ScrollContainer/Margin/BubbleContainer/SpeechBubbleLeft9"]

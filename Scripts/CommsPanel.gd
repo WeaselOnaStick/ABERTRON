@@ -21,3 +21,9 @@ func _ready():
 
 func lights_toggle(state : bool):
 	$PanelLight.visible = state
+
+func _process(delta: float) -> void:
+	if dialogue_renderer.state == dialogue_renderer.states.WAITING_MANUAL:
+		add_to_group("Interactable")
+	else:
+		remove_from_group("Interactable")
