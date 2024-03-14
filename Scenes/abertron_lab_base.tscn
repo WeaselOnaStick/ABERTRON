@@ -86,7 +86,7 @@ ssil_intensity = 0.38
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fktqy"]
 frequency = 0.2848
-offset = Vector3(0, 1.58722e+06, 0)
+offset = Vector3(0, 1.61748e+06, 0)
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5owlk"]
 width = 12

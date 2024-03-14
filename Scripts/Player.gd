@@ -35,6 +35,7 @@ func _physics_process(delta):
 		
 	move_and_slide()
 	
+	
 	if interaction_ray.is_colliding() and interaction_ray.get_collider().get_parent().is_in_group("Interactable"):
 		FPS_HUD.toggle_crosshair_highlight(true)
 	else:
@@ -66,6 +67,7 @@ func _input(event):
 		interact()
 
 func interact():
+	TutorialGUI.how_many_times_interacted += 1
 	if cur_held_obj != null:
 		drop_obj(cur_held_obj)
 		return
@@ -86,9 +88,11 @@ func interact():
 		drop_obj(col_obj)
 	
 
-func pick_up_obj(obj : Node3D):
+func pick_up_obj(obj : RigidBody3D):
 	obj.reparent(holding_position)
-	(obj as RigidBody3D).freeze = true
+	obj.freeze = true
+	obj.gravity_scale = 0
+	#obj.collision_layer = 4
 	obj.position = Vector3.ZERO
 	cur_held_obj = obj
 	
@@ -101,7 +105,10 @@ func _smooth_transf_reset(x : float):
 		
 	
 	
-func drop_obj(obj : Node3D):
+func drop_obj(obj : RigidBody3D):
+	holding_position.position = Vector3(0,0,-1.62)
 	obj.reparent(get_parent_node_3d())
 	(obj as RigidBody3D).freeze = false
+	obj.gravity_scale = 1
+	#obj.collision_layer = 1
 	cur_held_obj = null
